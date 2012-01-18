@@ -2,9 +2,9 @@ var app = require('express').createServer(),
     twitter = require('ntwitter'),
     io  = require('socket.io').listen(app),
     spotify = require('spotify'),
-    github = require('./github.js'),
-    mongodb = require('mongodb'),
-    dbserver = new mongodb.Server("127.0.0.1", 27017, {});
+    github = require('./github.js');
+    // mongodb = require('mongodb'),
+    // dbserver = new mongodb.Server("127.0.0.1", 27017, {});
 
 
 io.configure('production', function(){
