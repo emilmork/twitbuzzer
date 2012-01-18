@@ -32,7 +32,7 @@ var twit = new twitter({
   access_token_secret: 'Zz39fgkdezr7ZX0xOPdIR7pf7zrpKkYz3S9CEk1E'
 });
 
-app.listen(8080);
+app.listen(5209);
 
 app.get('/', function (req, res) {
     res.sendfile(__dirname + '/index.html');
