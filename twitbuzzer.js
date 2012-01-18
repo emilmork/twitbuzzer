@@ -1,7 +1,7 @@
 var app = require('express').createServer(),
     twitter = require('ntwitter'),
     io  = require('socket.io').listen(app),
-    spotify = require('spotify'),
+    spotify = require('./spotify.js'),
     github = require('./github.js');
     // mongodb = require('mongodb'),
     // dbserver = new mongodb.Server("127.0.0.1", 27017, {});
