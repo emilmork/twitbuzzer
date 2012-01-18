@@ -81,8 +81,8 @@ function emitData (sendObj, collection) {
             return;
         }
 
-        // obj.data = data;
-        // obj.date = new Date();
+        obj.data = data;
+        obj.date = new Date();
 
         // collection.insert(obj, {safe:true}, function(error, objects) {
         //     if (err) console.warn(err.message);
