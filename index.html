@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>TwitBuzzer</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect('http://localhost');
+      socket.on('new_tweet', function (data) {
+        console.log(data);
+      });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
