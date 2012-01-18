@@ -14,7 +14,6 @@ io.configure('production', function(){
     io.set('log level', 1);                    // reduce logging
     io.set('transports', [                     // enable all transports (optional if you want flashsocket)
         'websocket'
-      , 'flashsocket'
       , 'htmlfile'
       , 'xhr-polling'
       , 'jsonp-polling'
@@ -32,7 +31,7 @@ var twit = new twitter({
   access_token_secret: 'Zz39fgkdezr7ZX0xOPdIR7pf7zrpKkYz3S9CEk1E'
 });
 
-app.listen(5209);
+app.listen(process.env.PORT || 40825);
 
 app.get('/', function (req, res) {
     res.sendfile(__dirname + '/index.html');
