@@ -6,7 +6,6 @@ var app = require('express').createServer(),
     // mongodb = require('mongodb'),
     // dbserver = new mongodb.Server("127.0.0.1", 27017, {});
 
-
 io.configure('production', function(){
     io.enable('browser client minification');  // send minified client
     io.enable('browser client etag');          // apply etag caching logic based on version number
@@ -22,6 +21,13 @@ io.configure('production', function(){
 
 io.configure('development', function(){
   io.set('transports', ['websocket']);
+});
+
+// Heroku Socket.IO support. 
+// assuming io is the Socket.IO server object
+io.configure(function () { 
+  io.set("transports", ["xhr-polling"]); 
+  io.set("polling duration", 10); 
 });
 
 var twit = new twitter({
