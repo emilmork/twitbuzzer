@@ -4,7 +4,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>
-      var socket = io.connect('http://localhost');
+      var socket = io.connect(window.location.hostname);
       socket.on('new_tweet', function (data) {
         console.log(data);
         $("<p />").html("New " + data.type + " item").appendTo("body");

@@ -25,6 +25,8 @@ var twit = new twitter({
 
 app.listen(process.env.PORT || 40825);
 
+console.log("Node running at http://localhost:" + (process.env.PORT || 40825));
+
 app.get('/', function (req, res) {
     res.sendfile(__dirname + '/index.html');
 });
