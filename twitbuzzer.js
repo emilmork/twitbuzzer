@@ -65,16 +65,16 @@ function handleStream () {
             spotifyData = getSpotifyID(data.entities.urls);
 
         if (githubData.length > 0) {
-            console.log("---- githubData:");
-            console.log(data.text);
-            console.log(githubData);
+            // console.log("---- githubData:");
+            // console.log(data.text);
+            // console.log(githubData);
             emitGithub(githubData);
         } 
         
         if (spotifyData.length > 0 ) {
-            console.log("---- SpotifyData:");
-            console.log(data.text);
-            console.log(spotifyData);
+            // console.log("---- SpotifyData:");
+            // console.log(data.text);
+            // console.log(spotifyData);
             emitSpotify(spotifyData);
         }
     }
@@ -191,7 +191,7 @@ function count (collectionIdent, json, callback) {
 function get (collectionIdent, json, callback) {
     mongoose.connection.db.collection(collectionIdent, function (err, collection) {
         var res = collection.group({ 
-            cond: {"date": {$gte: "2009-11", $lt: "2012-12"}, "type": "github"}
+            cond: {"type": "github"}
            , key: {data: true}
            , initial: {count: 0}
            , reduce: function(doc, out){ out.count++; }
