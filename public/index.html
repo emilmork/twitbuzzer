@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>
+      var socket = io.connect(window.location.hostname);
+      socket.on('new_tweet', function (data) {
+        console.log(data);
+        $("<p />").html("New " + data.type + " item").appendTo("body");
+      });
+    </script>
+
+
+    <script type="text/javascript">
+
+    // Big up to Jeffrey Way for this noise generator (http://net.tutsplus.com/tutorials/javascript-ajax/how-to-generate-noise-with-canvas/)
+
+    function generateNoise(opacity) {
+      if (!!!document.createElement('canvas').getContext) {  
+        return false;  
+      }
+      
+      var canvas = document.createElement("canvas"),  
+      ctx = canvas.getContext('2d'),  
+      x, y,  
+      number,  
+      opacity = opacity || .2;  
+      
+      canvas.width = 250;
+      canvas.height = 250;
+      
+      for(x = 0; x < canvas.width; x++) {  
+        for(y = 0; y < canvas.height; y++) {  
+           number = Math.floor(Math.random() * 40); 
+           ctx.fillStyle = "rgba(" + number + "," + number + "," + number + "," + opacity + ")";  
+           ctx.fillRect(x, y, 1, 1);
+        }  
+      }  
+      
+      if(jQuery.browser.mozilla) {
+        document.body.style.backgroundImage = "-moz-radial-gradient(center center, rgba(0, 0, 0, 0), rgba(0, 0, 0, .4)), url(" + canvas.toDataURL("image/png") + ")";
+        document.getElementById("header").style.backgroundImage = "-moz-radial-gradient(center center, rgba(0, 0, 0, 0), rgba(0, 0, 0, .4)), url(" + canvas.toDataURL("image/png") + ")";
+
+      } else {
+        document.body.style.backgroundImage = "-webkit-gradient(radial, center 250, 0, center 250, 1000, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, .4))), url(" + canvas.toDataURL("image/png") + ")";
+        document.getElementById("header").style.backgroundImage = "-webkit-gradient(radial, center 250, 0, center 250, 1000, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, .4))), url(" + canvas.toDataURL("image/png") + ")";
+      }
+    }
+
+    $(document).ready(function() {
+      generateNoise(.2);
+    });
+
+
+    </script>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="content">
+        <div class="page-header" id="header">
+          <h1>twitbuzzer <small>the twitter live tracker for Github repos and Spotify items</small></h1>
+        </div>
+        <div class="row">
+          <div class="span9">
+            <h2>Main content</h2>
+          </div>
+          <div class="span5">
+            <h3>Settings</h3>
+            <form class="form-stacked">
+              <fieldset>
+                <legend>Example form legend</legend>
+                <!--<div class="clearfix">
+                  <label id="optionsCheckboxes">List of options</label>
+                  <div class="input">
+                    <ul class="inputs-list">
+                      <li>
+                        <label>
+                          <input type="checkbox" name="optionsCheckboxes" value="option1" />
+                          <span>Option one</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label>
+                          <input type="checkbox" name="optionsCheckboxes" value="option2" />
+                          <span>Option two</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label>
+                          <input type="checkbox" name="optionsCheckboxes" value="option2" />
+                          <span>Option three</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label class="disabled">
+                          <input type="checkbox" name="optionsCheckboxes" value="option2" disabled />
+                          <span>Option four cannot be checked as it is disabled.</span>
+                        </label>
+                      </li>
+                    </ul>
+                    <span class="help-block">
+                      <strong>Note:</strong> Labels surround all the options for much larger click areas and a more usable form.
+                    </span>
+                  </div>
+                </div>!-- /clearfix -->
+                <div class="clearfix">
+                  <label>Date range</label>
+                  <div class="input">
+                    <div class="inline-inputs">
+                      <input class="small" type="date" value="2012-01-10" />
+                      to
+                      <input class="small" type="date" value="2012-01-20" />
+                      <span class="help-block">All times are shown as Pacific Standard Time (GMT -08:00).</span>
+                    </div>
+                  </div>
+                </div><!-- /clearfix -->
+                
+                <div class="clearfix">
+                  <label id="optionsRadio">List of options</label>
+                  <div class="input">
+                    <ul class="inputs-list">
+                      <li>
+                        <label>
+                          <input type="radio" checked name="optionsRadios" value="option1" />
+                          <span>Option one is this and that&mdash;be sure to include why it’s great</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label>
+                          <input type="radio" name="optionsRadios" value="option2" />
+                          <span>Option two can is something else and selecting it will deselect options 1</span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div><!-- /clearfix -->
+                <div class="actions">
+                  <input type="submit" class="btn primary" value="Save changes">&nbsp;<button type="reset" class="btn">Cancel</button>
+                </div>
+              </fieldset>
+            </form>
+
+
+            <h3>Thanks to</h3>
+            <dl>
+              <dn><b>Twitter Bootstrap</b></dn>
+              <dd>http://github.com/twitter/bootstrap</dd>
+              <dn><b>Node-spotify</b></dn>
+              <dd>http://github.com/twitter/node-spotify</dd>
+              <dn><b>Socket.IO</b></dn>
+              <dd>http://socket.io</dd>
+            </dl>
+
+          </div>
+        </div>
+      </div>
+    </div> <!-- /container -->
+
+  </body>
+</html>
