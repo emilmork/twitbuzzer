@@ -2,7 +2,9 @@ var app = require('express').createServer(),
     twitter = require('ntwitter'),
     io  = require('socket.io').listen(app),
     spotify = require('./spotify.js'),
-    github = require('./github.js');
+    github = require('./github.js'),
+    mongoose = require('mongoose'),
+    config = require('./config');
 
 
 // Heroku Socket.IO support. 
@@ -28,24 +30,14 @@ app.listen(process.env.PORT || 40825);
 console.log("Node running at http://localhost:" + (process.env.PORT || 40825));
 
 app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/index.html');
+    res.sendfile(__dirname + '/public/index.html');
 });
 
-// new mongodb.Db('test', server, {}).open(function (error, client) {
-//     if (error) throw error;
+twit.stream('statuses/filter', {'track':'github,spotify'}, function(stream) {
+    stream.on('data', handleStream());
+});
 
-//     var collection = new mongodb.Collection(client, 'test_collection');
-    var collection = "";
-    twit.stream('statuses/filter', {'track':'github,spotify'}, function(stream) {
-        stream.on('data', handleStream(collection));
-    });
-
-// });
-
-var SPOTIFY_REGEX   = /http(?:s?):\/\/open\.spotify\.com\/([a-z]+)\/([a-zA-Z0-9]{22})/,
-    GITHUB_REGEX    = /http(?:s?):\/\/github\.com\/([a-zA-Z0-9\_\-]+)\/([a-zA-Z0-9\_\-]+)\/?/
-
-function handleStream (collection) {
+function handleStream () {
 
     return function (data) {
 
@@ -58,21 +50,21 @@ function handleStream (collection) {
             console.log("---- githubData:");
             console.log(data.text);
             console.log(githubData);
-            emitGithub(githubData, collection);
+            emitGithub(githubData);
         } 
         
         if (spotifyData.length > 0 ) {
             console.log("---- SpotifyData:");
             console.log(data.text);
             console.log(spotifyData);
-            emitSpotify(spotifyData, collection);
+            emitSpotify(spotifyData);
         }
     }
 }
 
 
 
-function emitData (sendObj, collection) {
+function emitData (sendObj) {
     var obj = sendObj;
 
     return function (err, data) {
@@ -83,37 +75,37 @@ function emitData (sendObj, collection) {
 
         obj.data = data;
         obj.date = new Date();
-
-        // collection.insert(obj, {safe:true}, function(error, objects) {
-        //     if (err) console.warn(err.message);
-        //     if (err && err.message.indexOf('E11000 ') !== -1) {
-        //         // this _id was already inserted in the database
-        //     }
+        
+        insert ("twitbuzzer", obj, function (err, docs) {
+            if (err) {
+                console.log("Insert error", err);
+                return;
+            }
 
             io.sockets.emit('new_tweet', obj);
-        // });
+        });
     }
 }
 
-function emitGithub(githubData, collection) {
+function emitGithub(githubData) {
     var obj = {
         type: "github"
     };
 
     githubData.forEach(function (elm) {
         obj.info = elm;
-        github.lookup(elm[0], elm[1], emitData(obj, collection));
+        github.lookup(elm[0], elm[1], emitData(obj));
     });
 }
 
-function emitSpotify(spotifyData, collection) {
+function emitSpotify(spotifyData) {
     var obj = {
         type: "spotify"
     };
 
     spotifyData.forEach(function (elm) {
         obj.info = elm;
-        spotify.lookup({ type: elm[0], id: elm[1] }, emitData(obj, collection));
+        spotify.lookup({ type: elm[0], id: elm[1] }, emitData(obj));
     });
 }
 
@@ -127,11 +119,11 @@ function filter(regex) {
 }
 
 function getSpotifyID (urls) {
-    return getID(urls, SPOTIFY_REGEX, filter(SPOTIFY_REGEX));
+    return getID(urls, config.SPOTIFY_REGEX, filter(config.SPOTIFY_REGEX));
 }
 
 function getGithubID (urls) {
-    return getID(urls, GITHUB_REGEX, filter(GITHUB_REGEX));
+    return getID(urls, config.GITHUB_REGEX, filter(config.GITHUB_REGEX));
 }
 
 function getID(urls, regex, filter) {
@@ -143,5 +135,43 @@ function getID(urls, regex, filter) {
     });
     return id;
 }
+
+
+/*********************
+ * MongoDB Handling 
+ *********************/
+
+
+
+//
+// Opens connection to MongoDB database, authenticates, logs successful connection.
+//
+function initializeDb() {
+    mongoose.connection.on("open", function() {
+        console.log("Connected to MongoDB successfully!");
+    });
+    mongoose.connect("mongodb://" + config.DB_USER + ":" + config.DB_PASS + "@" + config.DB_URL + "/" + config.DB_NAME);   
+}
+
+
+//
+// Queries a MongoDB collection to retrieve data based on
+// properties supplied by json parameter.
+//
+function query (collectionIdent, json, callback) {
+    mongoose.connection.db.collection(collectionIdent, function (err, collection) {
+        collection.find(json).toArray(callback);
+    });
+}
+
+//
+// Inserts into a MongoDB collection and returns inserted data
+//
+function insert (collectionIdent, json, callback) {
+    mongoose.connection.db.collection(collectionIdent, function (err, collection) {
+        collection.insert(json);
+        });
+}
+
 
 

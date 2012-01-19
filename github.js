@@ -41,7 +41,6 @@ module.exports = {
      */
     lookup: function(username, repo, callback) {
         var query = '/repos/' +username+'/'+repo;
-        console.log("Query: " + query);
         this.get(query, callback);
     },
 
