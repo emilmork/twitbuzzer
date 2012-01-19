@@ -30,7 +30,7 @@ app.listen(process.env.PORT || 40825);
 console.log("Node running at http://localhost:" + (process.env.PORT || 40825));
 
 app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/public/index.html');
+    res.sendfile(__dirname + '/web/index.html');
 });
 
 twit.stream('statuses/filter', {'track':'github,spotify'}, function(stream) {
