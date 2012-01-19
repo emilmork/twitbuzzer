@@ -190,7 +190,7 @@ function count (collectionIdent, json, callback) {
 
 function get (collectionIdent, json, callback) {
     mongoose.connection.db.collection(collectionIdent, function (err, collection) {
-        var res = collection.group({data: true}, {"type": "github"}, {count: 0}, function(doc, out){ out.count++; }, function(doc) {}, true, callback);
+        var res = collection.group({"data.html_url": true}, {"type": "github"}, {count: 0}, function(doc, out){ out.count++; }, function(doc) {}, true, callback);
     });
 }
 
