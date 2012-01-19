@@ -1,0 +1,53 @@
+/* Override some defaults */
+html, body {
+	height: 100%;
+}
+
+body {
+	background: #325177;
+	background: -moz-radial-gradient(center center, rgba(0, 0, 0, 0), rgba(0, 0, 0, .2)) #325177;
+	background: -webkit-gradient(radial, center center, 0, center center, 1000, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 1))) #325177;
+}
+
+.container {
+	width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+}
+
+/* The white background content wrapper */
+.content {
+	background-color: #fff;
+	padding: 20px;
+	margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+	-webkit-border-radius: 0 0 6px 6px;
+	-moz-border-radius: 0 0 6px 6px;
+	border-radius: 0 0 6px 6px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+	box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+/* Page header tweaks */
+.page-header {
+	background: #333;
+	background: -moz-linear-gradient(center center, rgba(0, 0, 0, 0), rgba(0, 0, 0, .2)) #333;
+	background: -webkit-gradient(linear, center center, 0, center center, 1000, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 1))) #333;
+	padding: 20px 20px 10px;
+	margin: -20px -20px 20px;
+}
+
+/* Styles you shouldn't keep as they are for displaying this base example only */
+.content .span9,
+.content .span5 {
+	min-height: 500px;
+}
+/* Give a quick and non-cross-browser friendly divider */
+.content .span5 {
+	margin-left: 0;
+	padding-left: 19px;
+	border-left: 1px solid #eee;
+}
+
+.topbar .btn {
+	border: 0;
+}
+
