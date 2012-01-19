@@ -47,7 +47,7 @@ app.use("/test", function (req, res) {
     get("twitbuzzer", {}, function (err, data) {
         if (err) console.log(err);
         
-        console.log(data); 
+        res.send(JSON.stringify(data));
     });
 });
 
