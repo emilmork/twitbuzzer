@@ -38,6 +38,10 @@ app.get('/', function (req, res) {
     res.sendfile(__dirname + '/web/index.html');
 });
 
+// Serve static files
+app.use("/css", express.static(__dirname + '/web/css'));
+app.use("/js", express.static(__dirname + '/web/js'));
+
 twit.stream('statuses/filter', {'track':'github,spotify'}, function(stream) {
     stream.on('data', handleStream());
 });
