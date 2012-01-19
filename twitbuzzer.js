@@ -7,6 +7,11 @@ var app = require('express').createServer(),
     config = require('./config');
 
 
+// Start connection to MongoDb
+initializeDb();        
+
+
+
 // Heroku Socket.IO support. 
 // assuming io is the Socket.IO server object
 io.configure(function () { 
