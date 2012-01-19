@@ -174,8 +174,8 @@ function query (collectionIdent, json, callback) {
 //
 function insert (collectionIdent, json, callback) {
     mongoose.connection.db.collection(collectionIdent, function (err, collection) {
-        collection.insert(json);
-        });
+        collection.insert(json).toArray(callback);
+    });
 }
 
 
