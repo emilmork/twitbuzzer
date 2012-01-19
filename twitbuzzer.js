@@ -113,10 +113,10 @@ function emitSpotify(spotifyData) {
         type: "spotify"
     };
 
-    spotifyData.forEach(function (elm) {
-        obj.info = elm;
-        spotify.lookup({ type: elm[0], id: elm[1] }, emitData(obj));
-    });
+    // spotifyData.forEach(function (elm) {
+    //     obj.info = elm;
+    //     spotify.lookup({ type: elm[0], id: elm[1] }, emitData(obj));
+    // });
 }
 
 function filter(regex) {
