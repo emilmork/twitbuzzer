@@ -43,6 +43,14 @@ app.get('/', function (req, res) {
 app.use("/css", express.static(__dirname + '/web/css'));
 app.use("/js", express.static(__dirname + '/web/js'));
 
+app.use("/test", function (req, res) {
+    get("twitbuzzer", {}, function (err, data) {
+        if (err) console.log(err);
+        
+        console.log(data); 
+    });
+});
+
 twit.stream('statuses/filter', {'track':'github,spotify'}, function(stream) {
     stream.on('data', handleStream());
 });
@@ -173,6 +181,28 @@ function query (collectionIdent, json, callback) {
         collection.find(json).toArray(callback);
     });
 }
+
+function count (collectionIdent, json, callback) {
+    mongoose.connection.db.collection(collectionIdent, function (err, collection) {
+        callback(err, collection.find(json).count());
+    });
+}
+
+function get (collectionIdent, json, callback) {
+    mongoose.connection.db.collection(collectionIdent, function (err, collection) {
+        var res = collection.group({ 
+            cond: {"date": {$gte: "2009-11", $lt: "2012-12"}, "type": "github"}
+           , key: {data: true}
+           , initial: {count: 0}
+           , reduce: function(doc, out){ out.count++; }
+           , finalize: function(out){  }
+        });
+        callback(err, res);
+    });
+}
+
+
+;
 
 //
 // Inserts into a MongoDB collection and returns inserted data
