@@ -1,4 +1,5 @@
-var app = require('express').createServer(),
+var express = require('express'),
+    app = express.createServer(),
     twitter = require('ntwitter'),
     io  = require('socket.io').listen(app),
     spotify = require('./spotify.js'),
