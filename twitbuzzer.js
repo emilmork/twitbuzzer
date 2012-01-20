@@ -227,11 +227,7 @@ function mapReduce (collectionIdent, callback) {
                 data: {
                     name: this.name,
                     description: this.name,
-                    owner: {
-                        avatar: this.owner.avatar_url,
-                        username: this.owner.login,
-                        url: this.owner.url
-                    },
+                    owner: this.owner,
                     description: this.description,
                     language: this.language,
                     forks: this.forks,
