@@ -253,6 +253,12 @@ function mapReduce (collectionIdent, callback) {
     // });
     var options = { out: { inline: 1 }, query: {'date' : { $gt: now }} };
     mongoose.connection.db.collection(collectionIdent, function (err, collection) {
+
+        if(err) console.log( err );
+
+        console.log("Collection:");
+        console.log(collection);
+
         collection.mapReduce(urlMap.toString(), urlReduce.toString(), options, function (err, collection) {
             if(err) console.log( err );
 
