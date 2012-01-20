@@ -49,6 +49,11 @@
         $("#load-more-content").fadeIn();
         $.getJSON(url, function (data) {
           $(data).each(function () {
+            if(/\?/.test(this.value.data.owner.avatar_url)) {
+              this.value.data.owner.avatar_url += "&s=30";
+            } else {
+              this.value.data.owner.avatar_url += "?s=30";
+            }
             var item = ich.item(this.value.data);
             $("#content-box ul").append(item);
           });
@@ -242,10 +247,10 @@
           </div>
         </div>
         <p>{{description}}</p>
-        <div class="row" class="meta-author actions">
+        <div class="row meta-author actions">
           <div class="span1">
             <a href="{{#owner}}{{url}}{{/owner}}">
-              <img class="thumbnail" src="{{#owner}}{{avatar_url}}{{/owner}}&s=30" alt="{{#owner}}{{login}}{{/owner}}">
+              <img class="thumbnail" src="{{#owner}}{{avatar_url}}{{/owner}}" alt="{{#owner}}{{login}}{{/owner}}">
             </a> 
           </div>
           <div class="span6">
