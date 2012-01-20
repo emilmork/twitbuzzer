@@ -197,7 +197,7 @@ function mapReduce (collectionIdent, callback) {
 
     urlMap = function() { //map function
         emit(this.data.id, {
-                data: [{
+                data: { // Github Model
                     language: this.data.language,
                     html_url: this.data.html_url,
                     name: this.data.name,
@@ -209,22 +209,16 @@ function mapReduce (collectionIdent, callback) {
                     },
                     forks: this.data.forks,
                     watchers: this.data.watchers
-                }],
+                },
                 count: 1,
                 date: this.date
             }); //sends the url 'key' and a 'value' of 1 to the reduce function
     } 
 
     urlReduce = function(key, values) { //reduce function
-        // var count = 0;
-        // for (index in current) {  //in this example, 'current' will only have 1 index and the 'value' is 1
-        //     count += current[index].count; //increments the counter by the 'value' of 1
-        // }
-        // return count;
-
-        var reduced = {"data":[], count: 0, "date": 0};
+        var reduced = {"data":{}, count: 0, "date": 0};
         reduced.date = values[0].date;
-        reduced.data = values[0].data[0];
+        reduced.data = values[0].data;
 
         for (var i in values) {
             reduced.count += values[i].count;
