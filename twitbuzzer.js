@@ -224,15 +224,7 @@ function mapReduce (collectionIdent, callback) {
 
     urlMap = function() { //map function
         emit(this.data.html_url, {
-                data: {
-                    name: this.name,
-                    description: this.name,
-                    owner: this.owner,
-                    description: this.description,
-                    language: this.language,
-                    forks: this.forks,
-                    watchers: this.watchers
-                },
+                data: this.data,
                 count: 1
             }); //sends the url 'key' and a 'value' of 1 to the reduce function
     } 
@@ -299,7 +291,7 @@ function mapReduce (collectionIdent, callback) {
             console.log("Collection:");
             console.log(collection);
 
-            collection.find({}).sort({'value': -1}).limit(10).toArray(callback);
+            collection.find({}).sort({'value.count': -1}).limit(10).toArray(callback);
         });
     });
 
