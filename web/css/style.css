@@ -52,7 +52,7 @@ body {
 }
 
 #load-more-content {
-	background: url("/media/ajax-loader.gif") no-repeat center center;
+	background: url("/media/ajax-loader.gif") no-repeat center center #000;
 	display: block;
 	margin: 0px auto;
 	clear: both;
