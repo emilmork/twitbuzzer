@@ -70,13 +70,11 @@ app.use("/css", express.static(__dirname + '/web/css'));
 app.use("/js", express.static(__dirname + '/web/js'));
 
 app.use("/test", function (req, res) {
-    // mapReduce("twitbuzzer", function (err, data) {
-    //     if (err) console.log(err);
+    mapReduce("twitbuzzer", function (err, data) {
+        if (err) console.log(err);
         
-    //     res.send(JSON.stringify(data));
-    // });
-
-    remove("twitbuzzer", {type: "spotify"});
+        res.send(JSON.stringify(data));
+    });
 });
 
 twit.stream('statuses/filter', {'track':'github,spotify'}, function(stream) {
