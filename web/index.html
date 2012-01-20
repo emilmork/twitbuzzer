@@ -51,6 +51,7 @@
           $(data).each(function () {
 
             this.value.data.id = this._id;
+            this.value.data.count = this.value.count;
 
             if(/\?/.test(this.value.data.owner.avatar_url)) {
               this.value.data.owner.avatar_url += "&s=30";
@@ -243,7 +244,7 @@
       <li data-repo-id="{{id}}">
         <div class="item">
           <div class="row">
-            <div class="span6">
+            <div class="span5">
               <h3><a href="{{url}}" title="{{name}}">{{name}}</a></h3>
             </div>
             <div class="span1" class="watchers">
@@ -251,6 +252,9 @@
             </div>
             <div class="span1" class="forks">
               {{forks}}
+            </div>
+            <div class="span1" class="count">
+              {{count}}
             </div>
           </div>
           <p>{{description}}</p>
