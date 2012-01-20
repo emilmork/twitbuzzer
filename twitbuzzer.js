@@ -223,13 +223,28 @@ function get (collectionIdent, json, callback) {
 function mapReduce (collectionIdent, callback) {
 
     urlMap = function() { //map function
-        emit(this.data.html_url, 1); //sends the url 'key' and a 'value' of 1 to the reduce function
+        emit(this.data.html_url, {
+                data: {
+                    name: this.name,
+                    description: this.name,
+                    owner: {
+                        avatar: this.owner.avatar_url,
+                        username: this.owner.login,
+                        url: this.owner.url
+                    },
+                    description: this.description,
+                    language: this.language,
+                    forks: this.forks,
+                    watchers: this.watchers
+                },
+                count: 1
+            }); //sends the url 'key' and a 'value' of 1 to the reduce function
     } 
 
     urlReduce = function(previous, current) { //reduce function
         var count = 0;
         for (index in current) {  //in this example, 'current' will only have 1 index and the 'value' is 1
-            count += current[index]; //increments the counter by the 'value' of 1
+            count += current[index].count; //increments the counter by the 'value' of 1
         }
         return count;
     };
@@ -251,6 +266,29 @@ function mapReduce (collectionIdent, callback) {
     // mongoose.connection.db.executeDbCommand(command, function(err, dbres) {
         
     // });
+
+    /*
+
+    {
+    type : String,
+    info: [ String, String ],
+    date: Date,
+    data: {
+        language: String,
+        html_url: String,
+        name: String,
+        description: String,
+        owner: {
+            avatar_url: String,
+            login: String,
+            url: String
+        },
+        forks: Number,
+        watchers: Number
+    }
+  }
+
+  */
     var options = {  query: {'date' : { $gt: now }} };
     mongoose.connection.db.collection(collectionIdent, function (err, collection) {
 
