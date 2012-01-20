@@ -42,9 +42,23 @@ app.use("/css", express.static(__dirname + '/web/css'));
 app.use("/js", express.static(__dirname + '/web/js'));
 
 // Serve API for fetching generated Github Repo objects
-app.use("/github/:daylimit/:limit/:page?", function (req, res) {
+app.use(/^\/github?(?:\/(\d+)(?:\/(\d+)(?:\/(\d+))?))?/, function (req, res) {
     res.contentType('application/json');
-    mongodb.mapReduce("twitbuzzer", req.params.daylimit, req.params.limit, req.params.page, function (err, data) {
+    var params = req.params;
+    var daylimit = 1000,
+        limit = 10,
+        offset = 0;
+    
+    if(params.length == 2) {
+        daylimit = params[0];
+        limit = params[1];
+    }
+
+    if(params.length > 2) {
+        offset = limit*(params[2]-1);
+    }
+
+    mongodb.mapReduce("twitbuzzer", daylimit, limit, offset, function (err, data) {
         if (err) console.log(err);
         
         res.send(JSON.stringify(data));
