@@ -70,7 +70,7 @@ app.use("/css", express.static(__dirname + '/web/css'));
 app.use("/js", express.static(__dirname + '/web/js'));
 
 app.use("/test", function (req, res) {
-    mapReduce(function (err, data) {
+    mapReduce("twitbuzzer", function (err, data) {
         if (err) console.log(err);
         
         res.send(JSON.stringify(data));
@@ -220,10 +220,10 @@ function get (collectionIdent, json, callback) {
     });
 }
 
-function mapReduce (callback) {
+function mapReduce (collectionIdent, callback) {
 
     urlMap = function() { //map function
-        emit(this.html_url, 1); //sends the url 'key' and a 'value' of 1 to the reduce function
+        emit(this.data.html_url, 1); //sends the url 'key' and a 'value' of 1 to the reduce function
     } 
 
     urlReduce = function(previous, current) { //reduce function
@@ -252,13 +252,15 @@ function mapReduce (callback) {
         
     // });
     var options = { out: { inline: 1 }, query: {'date' : { $gt: now }} };
-    GithubModel.collection.mapReduce(urlMap.toString(), urlReduce.toString(), options, function (err, collection) {
-        if(err) console.log( err );
+    mongoose.connection.db.collection(collectionIdent, function (err, collection) {
+        collection.mapReduce(urlMap.toString(), urlReduce.toString(), options, function (err, collection) {
+            if(err) console.log( err );
 
-        console.log("Collection:");
-        console.log(collection);
+            console.log("Collection:");
+            console.log(collection);
 
-        collection.find({}).sort({'value': -1}).limit(10).toArray(callback);
+            collection.find({}).sort({'value': -1}).limit(10).toArray(callback);
+        });
     });
 
     // mongoose.connection.db.collection(collectionIdent, function (err, collection) {
