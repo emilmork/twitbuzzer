@@ -70,6 +70,7 @@ app.use("/css", express.static(__dirname + '/web/css'));
 app.use("/js", express.static(__dirname + '/web/js'));
 
 app.use("/test", function (req, res) {
+    req.is('*/json');
     mapReduce("twitbuzzer", function (err, data) {
         if (err) console.log(err);
         
@@ -223,18 +224,41 @@ function get (collectionIdent, json, callback) {
 function mapReduce (collectionIdent, callback) {
 
     urlMap = function() { //map function
-        emit(this.data.html_url, {
-                data: this.data,
+        emit(this.data.id, {
+                data: [{
+                    language: this.data.language,
+                    html_url: this.data.html_url,
+                    name: this.data.name,
+                    description: this.data.description,
+                    owner: {
+                        avatar_url: this.data.owner.avatar_url,
+                        login: this.data.owner.login,
+                        url: this.data.owner.url
+                    },
+                    forks: this.data.forks,
+                    watchers: this.data.watchers
+                }],
                 count: 1
             }); //sends the url 'key' and a 'value' of 1 to the reduce function
     } 
 
-    urlReduce = function(previous, current) { //reduce function
-        var count = 0;
-        for (index in current) {  //in this example, 'current' will only have 1 index and the 'value' is 1
-            count += current[index].count; //increments the counter by the 'value' of 1
+    urlReduce = function(key, value) { //reduce function
+        // var count = 0;
+        // for (index in current) {  //in this example, 'current' will only have 1 index and the 'value' is 1
+        //     count += current[index].count; //increments the counter by the 'value' of 1
+        // }
+        // return count;
+
+        var reduced = {"data":[]};
+        for (var i in values) {
+            var inter = values[i];
+            for (var j in inter.data) {
+                reduced.data.push(inter.data[j]);
+            }
+            reduced.count += inter.count;
         }
-        return count;
+
+        return reduced;
     };
 
     // current date
