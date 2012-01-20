@@ -8,6 +8,9 @@ var express     = require('express'),
     mongodb     = require('./lib/mongodb');
 
 
+// Start connection to MongoDb
+mongodb.initializeDb();
+
 // Heroku Socket.IO support. 
 // assuming io is the Socket.IO server object
 io.configure(function () { 
