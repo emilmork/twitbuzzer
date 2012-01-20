@@ -26,8 +26,10 @@
       });
 
       $.getJSON("/github", function (data) {
-        $(data.value).each(function () {
-          $("<li />").html(this.data.name).appendTo("#content ul");
+        $(data).each(function () {
+          var item = this.value.data;
+          console.log(item.name);
+          $("<li />").html(item.name).appendTo("#content-box ul");
         })
       })
     </script>
@@ -92,7 +94,7 @@
           <h1>twitbuzzer <small>the twitter live tracker for Github repos and Spotify items</small></h1>
         </div>
         <div class="row">
-          <div class="span9" id="content">
+          <div class="span9" id="content-box">
             <h2>Main content</h2>
             <ul>
             </ul>
