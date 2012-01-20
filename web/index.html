@@ -49,11 +49,13 @@
         $("#load-more-content").fadeIn();
         $.getJSON(url, function (data) {
           $(data).each(function () {
+            
             if(/\?/.test(this.value.data.owner.avatar_url)) {
               this.value.data.owner.avatar_url += "&s=30";
             } else {
               this.value.data.owner.avatar_url += "?s=30";
             }
+
             var item = ich.item(this.value.data);
             $("#content-box ul").append(item);
           });
