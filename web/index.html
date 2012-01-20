@@ -34,7 +34,9 @@
         loadData("/github");
       });
 
-      infiniteScroll(page, history, scrollingMargin, loadData("/github/" + history + "/" + limit + "/" + page));
+      infiniteScroll(page, history, scrollingMargin, function () {
+        loadData("/github/" + history + "/" + limit + "/" + page)
+      });
 
       function loadData (url) {
         $.getJSON(url, function (data) {
