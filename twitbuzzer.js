@@ -236,43 +236,8 @@ function mapReduce (collectionIdent, callback) {
     // current date
     var now = new Date();
     // 7 days earlier
-    now.setDate(now.getDate()-10);
+    now.setDate(now.getDate()-1);
 
-    // var command = {
-    //     mapreduce: "githubmodels", //the name of the collection we are map-reducing *note, this is the model Ping we defined above...mongoose automatically appends an 's' to the model name within mongoDB
-    //     query: { 'date' : { $gt: now } }, //I've included this as an example of how to query for parameters outside of the map-reduced variable
-    //     map: urlMap.toString(), //a function we'll define next for mapping
-    //     reduce: urlReduce.toString(), //a function we'll define next for reducing
-    //     sort: {url: 1}, //let's sort descending...it makes the operation run faster
-    //     out: "pingjar" //the collection that will contain the map-reduce results *note, this must be a different collection than the map-reduce input
-    // };
-
-    // mongoose.connection.db.executeDbCommand(command, function(err, dbres) {
-        
-    // });
-
-    /*
-
-    {
-    type : String,
-    info: [ String, String ],
-    date: Date,
-    data: {
-        language: String,
-        html_url: String,
-        name: String,
-        description: String,
-        owner: {
-            avatar_url: String,
-            login: String,
-            url: String
-        },
-        forks: Number,
-        watchers: Number
-    }
-  }
-
-  */
     var options = {  query: {'date' : { $gt: now }} };
     mongoose.connection.db.collection(collectionIdent, function (err, collection) {
 
@@ -291,9 +256,6 @@ function mapReduce (collectionIdent, callback) {
         });
     });
 
-    // mongoose.connection.db.collection(collectionIdent, function (err, collection) {
-    //     var res = collection.group({"data.html_url": true}, {"type": "github"}, {count: 0}, function(doc, out){ out.count++; }, function(doc) {}, true, callback);
-    // });
 }
 
 function remove (collectionIdent, json, callback) {
