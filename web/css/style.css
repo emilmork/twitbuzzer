@@ -54,9 +54,12 @@ body {
 	height: 30px;
 }
 
+#content-box ul.unstyled li {
+	background: #f1f1f1;
+}
+
 #content-box ul.unstyled li .item {
 	padding: 10px;
-	background: #f4f4f4;
 }
 #content-box ul.unstyled li .actions {
 	padding: 10px;
