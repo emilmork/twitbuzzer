@@ -237,7 +237,7 @@ function mapReduce (collectionIdent, callback) {
         // current date
         var now = new Date();
         // 7 days earlier
-        now.setDate(now.getDate()-1);
+        now.setDate(now.getDate()+1);
 
         var options = {  query: {'date' : { $gt: now }} };
 
