@@ -238,8 +238,8 @@ function mapReduce (collectionIdent, callback) {
         var now = new Date();
         // 7 days earlier
         now.setDate(now.getDate()-100);
-        var query = {'date' : { $gt: now };
-        var options = {  query: query } };
+        var query = {'date' : { $gt: now }};
+        var options = {  query: query };
 
         collection.mapReduce(urlMap.toString(), urlReduce.toString(), options, function (err, collection) {
             if(err) console.log( err );
