@@ -50,6 +50,8 @@
         $.getJSON(url, function (data) {
           $(data).each(function () {
 
+            this.value.data.id = this._id;
+
             if(/\?/.test(this.value.data.owner.avatar_url)) {
               this.value.data.owner.avatar_url += "&s=30";
             } else {
