@@ -42,7 +42,7 @@ app.use("/css", express.static(__dirname + '/web/css'));
 app.use("/js", express.static(__dirname + '/web/js'));
 
 // Serve API for fetching generated Github Repo objects
-app.use(/^\/github?(?:\/(\d+)(?:\/(\d+)(?:\/(\d+))?))?/, function (req, res) {
+app.use(/^\/github(?:\/(\d+)\/(\d+)(?:\/(\d+))?)?/, function (req, res) {
     res.contentType('application/json');
     var params = req.params;
     var daylimit = 1000,
