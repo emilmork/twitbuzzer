@@ -25,7 +25,8 @@
         // $("<p />").html("New " + data.type + " item").appendTo("body");
       });
 
-      $.getJSON("/github/", function (data) {
+      $.getJSON("/github", function (data) {
+        console.log(data);
         $(data).each(function () {
           $("<li />").html(this.data.name).appendTo("#content ul");
         })
