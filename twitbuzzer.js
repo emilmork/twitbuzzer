@@ -59,8 +59,6 @@ app.get(/^\/github(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
         offset = parseInt(limit*(params[2]-1));
     }
 
-    console.log("Pagestats: ", daylimit, limit, offset);
-
     mongodb.mapReduce("twitbuzzer", daylimit, limit, offset, function (err, data) {
         if (err) console.log(err);
         

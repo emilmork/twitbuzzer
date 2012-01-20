@@ -22,8 +22,14 @@
       var socket = io.connect(window.location.hostname);
       socket.on('new_tweet', function (data) {
         console.log(data);
-        $("<p />").html("New " + data.type + " item").appendTo("body");
+        // $("<p />").html("New " + data.type + " item").appendTo("body");
       });
+
+      $.getJSON("/github/", function (data) {
+        $(data).each(function () {
+          $("<li />").html(this.data.name).appendTo("#content ul");
+        })
+      })
     </script>
 
 
@@ -86,9 +92,10 @@
           <h1>twitbuzzer <small>the twitter live tracker for Github repos and Spotify items</small></h1>
         </div>
         <div class="row">
-          <div class="span9">
+          <div class="span9" id="content">
             <h2>Main content</h2>
-            <p>Hei, Marius</p>
+            <ul>
+            </ul>
           </div>
           <div class="span5">
             <h3>Settings</h3>
