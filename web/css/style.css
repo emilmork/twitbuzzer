@@ -54,14 +54,8 @@ body {
 	height: 30px;
 }
 
-#content-box ul li {
-	border-bottom: 1px solid #ddd;
-	padding-bottom: 20px;
-	margin-bottom: 20px;
-}
-
-
-#content-box ul.unstyled li .meta-author {
+#content-box ul.unstyled li .meta-author.action {
+	padding: 10px;
 }
 #content-box ul.unstyled li .meta-author .span6 {
 	margin-left: 5px;
