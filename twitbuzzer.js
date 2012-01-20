@@ -276,7 +276,7 @@ function mapReduce (collectionIdent, callback) {
     // });
 }
 
-function remove () (collectionIdent, json, callback) {
+function remove (collectionIdent, json, callback) {
     mongoose.connection.db.collection(collectionIdent, function (err, collection) {
         collection.find(json).remove();
     });
