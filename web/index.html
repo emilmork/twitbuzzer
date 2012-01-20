@@ -18,6 +18,7 @@
     <script src="/socket.io/socket.io.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="js/icanhaz.js"></script>
     <script>
       var socket = io.connect(window.location.hostname);
       socket.on('new_tweet', function (data) {
@@ -48,8 +49,8 @@
         $("#load-more-content").fadeIn();
         $.getJSON(url, function (data) {
           $(data).each(function () {
-            var item = this.value.data;
-            $("<li />").html(item.name).appendTo("#content-box ul");
+            var item = ich.user(this.value.data);
+            $("#content-box ul").append(item);
           });
           isLoading = false;
           $("#load-more-content").fadeOut();
@@ -69,6 +70,7 @@
 
 
     </script>
+
 
 
     <script type="text/javascript">
@@ -227,5 +229,33 @@
       </div>
     </div> <!-- /container -->
 
+    <script id="item" type="text/html">
+      <li>
+        <div class="row">
+          <div class="span6">
+            <h3><a href="{{url}}" title="{{name}}">{{name}}</a></h3>
+          </div>
+          <div class="span2" class="watchers">
+            {{watchers}}
+          </div>
+          <div class="span2" class="forks">
+            Level 2
+          </div>
+        </div>
+        <p>{{description}}</p>
+        <div class="row">
+          <div class="span1">
+            <a href="{{owner.url}}">
+              <img class="thumbnail" src="{{owner.avatar_url}}&s=30" alt="{{owner.login}}">
+            </a> 
+          </div>
+          <div class="span6">
+            <a href="{{owner.url}}">
+              {{owner.login}}
+            </a>
+          </div>
+        </div>
+      </li>
+    </script>
   </body>
 </html>
