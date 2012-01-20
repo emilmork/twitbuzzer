@@ -20,7 +20,6 @@ var GithubSchema = new Schema(
   {
     type : String,
     info: [ String, String ]
-    date: Date,
     data: {
         language: String,
         html_url: String,
@@ -253,7 +252,8 @@ function mapReduce (callback) {
     // mongoose.connection.db.executeDbCommand(command, function(err, dbres) {
         
     // });
-    var options = { out: { inline: 1 }, query: {'date' : { $gt: now }} };
+    // var options = { out: { inline: 1 }, query: {'date' : { $gt: now }} };
+    var options = { out: { inline: 1 } };
     GithubModel.collection.mapReduce(urlMap.toString(), urlReduce.toString(), options, function (err, collection) {
         collection.find({}).sort({'value': -1}).limit(10).toArray(callback);
     });
