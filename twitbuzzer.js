@@ -70,11 +70,13 @@ app.use("/css", express.static(__dirname + '/web/css'));
 app.use("/js", express.static(__dirname + '/web/js'));
 
 app.use("/test", function (req, res) {
-    mapReduce("twitbuzzer", function (err, data) {
-        if (err) console.log(err);
+    // mapReduce("twitbuzzer", function (err, data) {
+    //     if (err) console.log(err);
         
-        res.send(JSON.stringify(data));
-    });
+    //     res.send(JSON.stringify(data));
+    // });
+
+    remove("twitbuzzer", {type: "spotify"});
 });
 
 twit.stream('statuses/filter', {'track':'github,spotify'}, function(stream) {
@@ -274,7 +276,11 @@ function mapReduce (collectionIdent, callback) {
     // });
 }
 
-
+function remove () (collectionIdent, json, callback) {
+    mongoose.connection.db.collection(collectionIdent, function (err, collection) {
+        collection.find(json).remove();
+    });
+}
 //
 // Inserts into a MongoDB collection and returns inserted data
 //
