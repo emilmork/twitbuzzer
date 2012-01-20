@@ -253,6 +253,11 @@ function mapReduce (callback) {
     // });
     var options = { out: { inline: 1 }, query: {'date' : { $gt: now }} };
     GithubModel.collection.mapReduce(urlMap.toString(), urlReduce.toString(), options, function (err, collection) {
+        if(err) throw err;
+
+        console.log("Collection:");
+        console.log(collection);
+
         collection.find({}).sort({'value': -1}).limit(10).toArray(callback);
     });
 
