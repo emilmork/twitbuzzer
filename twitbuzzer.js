@@ -51,12 +51,12 @@ app.get(/^\/github(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
         offset = 0;
     
     if(typeof params[0] != "undefined") {
-        daylimit = params[0];
-        limit = params[1];
+        daylimit = parseInt(params[0]);
+        limit = parseInt(params[1]);
     }
 
     if(params[2] > 0) {
-        offset = limit*(params[2]-1);
+        offset = parseInt(limit*(params[2]-1));
     }
 
     console.log("Pagestats: ", daylimit, limit, offset);
