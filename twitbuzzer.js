@@ -62,6 +62,9 @@ ObjectId = Schema.ObjectId;
     }
 }
 */
+var String = Schema.String, 
+    Date = Schema.Date, 
+    Number = Schema.Number;
 var GithubSchema = new Schema(
   {
     type : String,
