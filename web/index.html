@@ -247,16 +247,18 @@
           </div>
         </div>
         <p>{{description}}</p>
-        <div class="row meta-author actions">
-          <div class="span1">
-            <a href="{{#owner}}{{url}}{{/owner}}">
-              <img class="thumbnail" src="{{#owner}}{{avatar_url}}{{/owner}}" alt="{{#owner}}{{login}}{{/owner}}">
-            </a> 
-          </div>
-          <div class="span6">
-            <a href="{{#owner}}{{url}}{{/owner}}">
-              {{#owner}}{{login}}{{/owner}}
-            </a>
+        <div class="meta-author actions">
+          <div class="row">
+            <div class="span1">
+              <a href="{{#owner}}{{url}}{{/owner}}">
+                <img class="thumbnail" src="{{#owner}}{{avatar_url}}{{/owner}}" alt="{{#owner}}{{login}}{{/owner}}">
+              </a> 
+            </div>
+            <div class="span6">
+              <a href="{{#owner}}{{url}}{{/owner}}">
+                {{#owner}}{{login}}{{/owner}}
+              </a>
+            </div>
           </div>
         </div>
       </li>
