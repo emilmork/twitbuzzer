@@ -42,7 +42,7 @@ app.use("/css", express.static(__dirname + '/web/css'));
 app.use("/js", express.static(__dirname + '/web/js'));
 
 app.use("/test", function (req, res) {
-    req.is('application/json');
+    res.contentType('application/json');
     mapReduce("twitbuzzer", function (err, data) {
         if (err) console.log(err);
         
