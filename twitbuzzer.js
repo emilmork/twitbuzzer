@@ -11,34 +11,6 @@ var express = require('express'),
 // Start connection to MongoDb
 initializeDb();
 
-var Schema = mongoose.Schema;
-var ObjectId = Schema.ObjectId;
-    
-var GithubSchema = new Schema(
-  {
-    type : String,
-    info: [ String, String ],
-    date: Date,
-    data: {
-        language: String,
-        html_url: String,
-        name: String,
-        description: String,
-        owner: {
-            avatar_url: String,
-            login: String,
-            url: String
-        },
-        forks: Number,
-        watchers: Number
-    }
-  });
-mongoose.model('GithubModel', GithubSchema); //tell mongoose about the Ping schema
-var GithubModel = mongoose.model('GithubModel'); //ask mongoose to create an instance of the Ping model
-
-
-
-
 // Heroku Socket.IO support. 
 // assuming io is the Socket.IO server object
 io.configure(function () { 
@@ -70,7 +42,7 @@ app.use("/css", express.static(__dirname + '/web/css'));
 app.use("/js", express.static(__dirname + '/web/js'));
 
 app.use("/test", function (req, res) {
-    req.is('*/json');
+    req.is('application/json');
     mapReduce("twitbuzzer", function (err, data) {
         if (err) console.log(err);
         
