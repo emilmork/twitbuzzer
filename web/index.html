@@ -25,13 +25,38 @@
         // $("<p />").html("New " + data.type + " item").appendTo("body");
       });
 
-      $.getJSON("/github", function (data) {
-        $(data).each(function () {
-          var item = this.value.data;
-          console.log(item.name);
-          $("<li />").html(item.name).appendTo("#content-box ul");
-        })
-      })
+      var page  = 1,
+          history = 1000,
+          scrollingMargin = 150;
+
+      $(function () {
+        loadData("/github");
+      });
+
+      infiniteScroll(page, history, scrollingMargin, loadData("/github/" + history + "/" + limit + "/" + page));
+
+      function loadData (url) {
+        $.getJSON(url, function (data) {
+          $(data).each(function () {
+            var item = this.value.data;
+            $("<li />").html(item.name).appendTo("#content-box ul");
+          })
+        });
+      }
+
+      function infiniteScroll (initPage, history, scrollingMargin, callback) {
+        var page = 1, history = 1000;
+        return (function () {
+            $(window).scroll(function() {
+            if($(window).scrollTop() + scrollingMargin == $(document).height() - $(window).height()) {
+              page += 1;
+              callback();
+            }
+          });
+        })();
+      }
+
+
     </script>
 
 
