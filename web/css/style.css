@@ -58,6 +58,9 @@ body {
 	background: #f8f8f8;
 }
 
+#content-box ul.unstyled li .item h3 {
+	line-height: 18px;
+}
 #content-box ul.unstyled li .item {
 	padding: 10px;
 }
