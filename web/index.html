@@ -28,7 +28,7 @@
       var page  = 1,
           history = 1000,
           limit = 10,
-          scrollingMargin = 150;
+          scrollingMargin = 50;
 
       $(function () {
         loadData("/github");
@@ -45,16 +45,16 @@
         });
       }
 
-      function infiniteScroll (initPage, history, scrollingMargin, callback) {
-        var page = 1, history = 1000;
-        return (function () {
-            $(window).scroll(function() {
-            if($(window).scrollTop() + scrollingMargin == $(document).height() - $(window).height()) {
-              page += 1;
-              callback();
-            }
-          });
-        })();
+      function infiniteScroll (page, history, scrollingMargin, callback) {
+        $(window).scroll(function() {
+          console.log("Scrolling...");
+          if($(window).scrollTop() + scrollingMargin == $(document).height() - $(window).height()) {
+            page += 1;
+
+            console.log("Loading new data...")
+            callback();
+          }
+        });
       }
 
 
