@@ -28,32 +28,34 @@
       var page  = 1,
           history = 1000,
           limit = 10,
-          scrollingMargin = 50;
+          scrollingMargin = 50,
+          isLoading = false;
 
       $(function () {
         loadData("/github");
       });
 
-      infiniteScroll(page, history, scrollingMargin, function () {
+      infiniteScroll(scrollingMargin, function () {
         loadData("/github/" + history + "/" + limit + "/" + page)
       });
 
       function loadData (url) {
+        isLoading = true;
         $.getJSON(url, function (data) {
           $(data).each(function () {
             var item = this.value.data;
             $("<li />").html(item.name).appendTo("#content-box ul");
-          })
+          });
+          isLoading = false;
         });
       }
 
-      function infiniteScroll (page, history, scrollingMargin, callback) {
+      function infiniteScroll (scrollingMargin, callback) {
         $(window).scroll(function() {
           console.log("Scrolling...", $(window).scrollTop(), scrollingMargin, $(document).height() - $(window).height());
-          if($(window).scrollTop() + scrollingMargin > $(document).height() - $(window).height()) {
+          if($(window).scrollTop() + scrollingMargin > $(document).height() - $(window).height() && !isLoading) {
             page += 1;
-
-            console.log("Loading new data...")
+            console.log("Loading new data...");
             callback();
           }
         });
