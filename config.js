@@ -1,5 +1,5 @@
 
-module.exports = {
+exports.app = {
 	// Regular expressions to recognize tweets
 	SPOTIFY_REGEX: /http(?:s?):\/\/open\.spotify\.com\/([a-z]+)\/([a-zA-Z0-9]{22})/,
 	GITHUB_REGEX: /http(?:s?):\/\/github\.com\/([a-zA-Z0-9\_\-]+)\/([a-zA-Z0-9\_\-]+)\/?/,
