@@ -69,7 +69,7 @@ var GithubSchema = new Schema(
   {
     type : String,
     info: [ String, String ]
-    date: Date,
+    date: Schema.Date,
     data: {
         language: String,
         html_url: String,
