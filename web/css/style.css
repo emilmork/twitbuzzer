@@ -52,9 +52,13 @@ body {
 }
 
 #load-more-content {
-	background: url("/media/ajax-loader.gif") no-repeat center center;
+	background: url("/media/ajaxg-loader.gif") no-repeat center center;
 	display: block;
 	margin: 0px auto;
 	clear: both;
 	height: 30px;
+}
+
+#content-box ul li {
+	border-bottom: 1px solid #ddd;
 }
