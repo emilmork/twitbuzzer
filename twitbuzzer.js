@@ -12,10 +12,8 @@ var express = require('express'),
 initializeDb();
 
 var Schema = mongoose.Schema;
-var ObjectId = Schema.ObjectId,
-    String = Schema.String, 
-    Date = Schema.Date, 
-    Number = Schema.Number;
+var ObjectId = Schema.ObjectId;
+    
 var GithubSchema = new Schema(
   {
     type : String,
