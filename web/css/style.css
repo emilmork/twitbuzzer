@@ -59,3 +59,13 @@ body {
 	padding-bottom: 20px;
 	margin-bottom: 20px;
 }
+
+
+#content-box ul li .meta-author {
+	background: #f9f9f9;
+	padding: 10px;
+}
+#content-box ul li .meta-author .span 6 {
+	margin-left: 5px;
+	padding-top: 10px;
+}
