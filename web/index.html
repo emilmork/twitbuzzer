@@ -28,11 +28,15 @@
       var page  = 1,
           history = 1000,
           limit = 10,
-          scrollingMargin = 50,
+          scrollingMargin = 150,
           isLoading = false;
 
       $(function () {
         loadData("/github");
+
+        var $loadMore = $("<p />").attr("id", "load-more-content");
+        $("#content ul").after($loadMore);
+        $loadMore.hide();
       });
 
       infiniteScroll(scrollingMargin, function () {
@@ -41,12 +45,14 @@
 
       function loadData (url) {
         isLoading = true;
+        $("#load-more-content").fadeIn();
         $.getJSON(url, function (data) {
           $(data).each(function () {
             var item = this.value.data;
             $("<li />").html(item.name).appendTo("#content-box ul");
           });
           isLoading = false;
+          $("#load-more-content").fadeOut();
         });
       }
 

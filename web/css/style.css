@@ -51,3 +51,10 @@ body {
 	border: 0;
 }
 
+#load-more-content {
+	background: url("/media/ajax-loader.gif") no-repeat center center;
+	display: block;
+	margin: 0px auto;
+	clear: both;
+	height: 30px;
+}
