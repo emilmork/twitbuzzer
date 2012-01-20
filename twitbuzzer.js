@@ -11,65 +11,16 @@ var express = require('express'),
 // Start connection to MongoDb
 initializeDb();
 
-Schema = mongoose.Schema;
-ObjectId = Schema.ObjectId;
-/*
-{
-    "type": "github",
-    "info": [
-        "NewEraCracker",
-        "LOIC"
-    ],
-    "data": {
-        "forks": 27,
-        "open_issues": 11,
-        "updated_at": "2012-01-19T23:07:27Z",
-        "clone_url": "https://github.com/NewEraCracker/LOIC.git",
-        "ssh_url": "git@github.com:NewEraCracker/LOIC.git",
-        "language": "C#",
-        "html_url": "https://github.com/NewEraCracker/LOIC",
-        "mirror_url": null,
-        "has_downloads": true,
-        "created_at": "2010-09-29T23:42:57Z",
-        "fork": false,
-        "pushed_at": "2011-05-25T20:35:06Z",
-        "git_url": "git://github.com/NewEraCracker/LOIC.git",
-        "description": "Low Orbit Ion Cannon - An open source network stress tool for Windows. Based on loic project at sourceforge.net/projects/loic/ and writen in C#. USE ON YOUR OWN RISK. WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES.",
-        "private": false,
-        "watchers": 224,
-        "size": 1864,
-        "has_issues": true,
-        "has_wiki": true,
-        "owner": {
-            "avatar_url": "https://secure.gravatar.com/avatar/50c96a38578e983060a94f49664ab47c?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png",
-            "gravatar_id": "50c96a38578e983060a94f49664ab47c",
-            "login": "NewEraCracker",
-            "url": "https://api.github.com/users/NewEraCracker",
-            "id": 416945
-        },
-        "name": "LOIC",
-        "svn_url": "https://github.com/NewEraCracker/LOIC",
-        "master_branch": null,
-        "id": 949828,
-        "url": "https://api.github.com/repos/NewEraCracker/LOIC",
-        "homepage": "https://github.com/NewEraCracker/LOIC/"
-    },
-    "date": {
-        "$date": "2012-01-20T00:03:08.016Z"
-    },
-    "_id": {
-        "$oid": "4f18af3c916a5e010000003a"
-    }
-}
-*/
-var String = Schema.String, 
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId,
+    String = Schema.String, 
     Date = Schema.Date, 
     Number = Schema.Number;
 var GithubSchema = new Schema(
   {
     type : String,
     info: [ String, String ]
-    date: Schema.Date,
+    date: Date,
     data: {
         language: String,
         html_url: String,
