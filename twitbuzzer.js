@@ -253,7 +253,7 @@ function mapReduce (collectionIdent, callback) {
         for (var i in values) {
             var inter = values[i];
             // for (var j in inter.data) {
-            reduced.data.push(inter.data[0]);
+            reduced.data = inter.data[0];
             // }
             reduced.count += inter.count;
         }
