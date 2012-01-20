@@ -210,7 +210,8 @@ function mapReduce (collectionIdent, callback) {
                     forks: this.data.forks,
                     watchers: this.data.watchers
                 }],
-                count: 1
+                count: 1,
+                date: this.date
             }); //sends the url 'key' and a 'value' of 1 to the reduce function
     } 
 
@@ -221,30 +222,30 @@ function mapReduce (collectionIdent, callback) {
         // }
         // return count;
 
-        var reduced = {"data":[], count: 0};
+        var reduced = {"data":[], count: 0, "date": 0};
+        reduced.date = values[0].date;
+        reduced.data = values[0].data[0];
+
         for (var i in values) {
-            var inter = values[i];
-            // for (var j in inter.data) {
-            reduced.data = inter.data[0];
-            // }
-            reduced.count += inter.count;
+            reduced.count += values[i].count;
         }
 
         return reduced;
     };
 
-    // current date
-    var now = new Date();
-    // 7 days earlier
-    now.setDate(now.getDate()-1);
-
-    var options = {  query: {'date' : { $gt: now }} };
     mongoose.connection.db.collection(collectionIdent, function (err, collection) {
 
         if(err) console.log( err );
 
         console.log("Collection:");
         console.log(collection);
+
+        // current date
+        var now = new Date();
+        // 7 days earlier
+        now.setDate(now.getDate()-1);
+
+        var options = {  query: {'date' : { $gt: now }} };
 
         collection.mapReduce(urlMap.toString(), urlReduce.toString(), options, function (err, collection) {
             if(err) console.log( err );
