@@ -251,7 +251,7 @@ function mapReduce (collectionIdent, callback) {
     // mongoose.connection.db.executeDbCommand(command, function(err, dbres) {
         
     // });
-    var options = { out: { reduce: 1 }, query: {'date' : { $gt: now }} };
+    var options = {  query: {'date' : { $gt: now }} };
     mongoose.connection.db.collection(collectionIdent, function (err, collection) {
 
         if(err) console.log( err );
