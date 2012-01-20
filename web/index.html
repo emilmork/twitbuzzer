@@ -49,12 +49,14 @@
         $("#load-more-content").fadeIn();
         $.getJSON(url, function (data) {
           $(data).each(function () {
-            
+
             if(/\?/.test(this.value.data.owner.avatar_url)) {
               this.value.data.owner.avatar_url += "&s=30";
             } else {
               this.value.data.owner.avatar_url += "?s=30";
             }
+
+            this.value.data.owner.url = "http://github.com/" + this.value.data.owner.login;
 
             var item = ich.item(this.value.data);
             $("#content-box ul").append(item);
@@ -237,15 +239,17 @@
 
     <script id="item" type="text/html">
       <li>
-        <div class="row">
-          <div class="span6">
-            <h3><a href="{{url}}" title="{{name}}">{{name}}</a></h3>
-          </div>
-          <div class="span1" class="watchers">
-            {{watchers}}
-          </div>
-          <div class="span1" class="forks">
-            {{forks}}
+        <div class="item">
+          <div class="row">
+            <div class="span6">
+              <h3><a href="{{url}}" title="{{name}}">{{name}}</a></h3>
+            </div>
+            <div class="span1" class="watchers">
+              {{watchers}}
+            </div>
+            <div class="span1" class="forks">
+              {{forks}}
+            </div>
           </div>
         </div>
         <p>{{description}}</p>
