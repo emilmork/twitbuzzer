@@ -42,19 +42,19 @@ app.use("/css", express.static(__dirname + '/web/css'));
 app.use("/js", express.static(__dirname + '/web/js'));
 
 // Serve API for fetching generated Github Repo objects
-app.get(/^\/github?(?:\/(\d+)(?:\/(\d+))?)?/, function (req, res) {
+app.get(/^\/github(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
     res.contentType('application/json');
     var params = req.params;
     var daylimit = 1000,
         limit = 10,
         offset = 0;
     
-    if(params.length == 2) {
+    if(typeof params[0] != "undefined") {
         daylimit = params[0];
         limit = params[1];
     }
 
-    if(params.length > 2) {
+    if(params[2] > 0) {
         offset = limit*(params[2]-1);
     }
 
