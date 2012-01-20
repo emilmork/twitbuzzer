@@ -9,6 +9,7 @@ var express     = require('express'),
 
 
 // Start connection to MongoDb
+console.log("Connecting to MongoDB");
 mongodb.initializeDb();
 
 // Heroku Socket.IO support. 
