@@ -231,18 +231,18 @@
     <script id="item" type="text/html">
       <li>
         <div class="row">
-          <div class="span5">
+          <div class="span6">
             <h3><a href="{{url}}" title="{{name}}">{{name}}</a></h3>
           </div>
-          <div class="span2" class="watchers">
+          <div class="span1" class="watchers">
             {{watchers}}
           </div>
-          <div class="span2" class="forks">
-            Level 2
+          <div class="span1" class="forks">
+            {{forks}}
           </div>
         </div>
         <p>{{description}}</p>
-        <div class="row">
+        <div class="row" class="meta-author">
           <div class="span1">
             <a href="{{#owner}}{{url}}{{/owner}}">
               <img class="thumbnail" src="{{#owner}}{{avatar_url}}{{/owner}}&s=30" alt="{{#owner}}{{login}}{{/owner}}">
@@ -250,7 +250,7 @@
           </div>
           <div class="span6">
             <a href="{{#owner}}{{url}}{{/owner}}">
-              {{#owner}}{{login}}{{owner}}
+              {{#owner}}{{login}}{{/owner}}
             </a>
           </div>
         </div>
