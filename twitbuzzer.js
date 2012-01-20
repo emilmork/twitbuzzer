@@ -41,6 +41,7 @@ app.get('/', function (req, res) {
 // Serve static files
 app.use("/css", express.static(__dirname + '/web/css'));
 app.use("/js", express.static(__dirname + '/web/js'));
+app.use("/media", express.static(__dirname + '/web/media'));
 
 // Serve API for fetching generated Github Repo objects
 app.get(/^\/github(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
