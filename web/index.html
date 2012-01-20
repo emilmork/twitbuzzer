@@ -47,7 +47,7 @@
 
       function infiniteScroll (page, history, scrollingMargin, callback) {
         $(window).scroll(function() {
-          console.log("Scrolling...");
+          console.log("Scrolling...", $(window).scrollTop(), scrollingMargin, $(document).height() - $(window).height());
           if($(window).scrollTop() + scrollingMargin == $(document).height() - $(window).height()) {
             page += 1;
 
