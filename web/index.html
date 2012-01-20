@@ -238,7 +238,7 @@
     </div> <!-- /container -->
 
     <script id="item" type="text/html">
-      <li>
+      <li data-repo-id="{{id}}">
         <div class="item">
           <div class="row">
             <div class="span6">
@@ -251,8 +251,8 @@
               {{forks}}
             </div>
           </div>
+          <p>{{description}}</p>
         </div>
-        <p>{{description}}</p>
         <div class="meta-author actions">
           <div class="row">
             <div class="span1">
