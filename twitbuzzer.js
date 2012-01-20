@@ -247,7 +247,7 @@ function mapReduce (collectionIdent, callback) {
             console.log("Collection:");
             console.log(collection);
 
-            collection.find(query).sort({'value.count': -1}).limit(10).toArray(callback);
+            collection.find({}).sort({'value.count': -1}).limit(10).toArray(callback);
         });
     });
 
