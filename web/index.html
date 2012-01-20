@@ -49,7 +49,7 @@
         $("#load-more-content").fadeIn();
         $.getJSON(url, function (data) {
           $(data).each(function () {
-            var item = ich.user(this.value.data);
+            var item = ich.item(this.value.data);
             $("#content-box ul").append(item);
           });
           isLoading = false;
