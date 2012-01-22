@@ -153,6 +153,10 @@ body {
 	color: #ddd;
 }
 
+.sidebar {
+	position: fixed;
+}
+
 #header {
 	width: 820px; 
 	position: fixed;
