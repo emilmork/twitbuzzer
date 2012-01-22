@@ -32,7 +32,8 @@
 
         if($item.length > 0) {
           var $plusOne = $("<span />").html("+1");
-          $plusOne.appendTo($item.find(".counter")).hide();
+          var $counter = $item.find(".count span");
+          $plusOne.appendTo($counter).hide();
 
           $plusOne.fadeIn("fast", function () {
             var $this = $(this);
@@ -43,8 +44,11 @@
             }, 3000);
           });
 
+          var counter = parseInt($counter.html()) + 1;
+          $counter.html(counter);
+
           var obj = {
-            notice: "Repo " + data.data.owner.login + "/" + data.data.name + " got another tweet! Is now at " + data.counter + " tweets."
+            notice: "Repo " + data.data.owner.login + "/" + data.data.name + " got another tweet! Is now at " + counter + " tweets."
           }
 
           var $alert = ich.alert(obj).prependTo("#content-box").hide()
