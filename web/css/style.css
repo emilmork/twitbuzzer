@@ -32,9 +32,8 @@ body {
 	background: #333;
 	background: -moz-linear-gradient(center center, rgba(0, 0, 0, 0), rgba(0, 0, 0, .2)) #333;
 	background: -webkit-gradient(linear, center center, 0, center center, 1000, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 1))) #333;
-	padding: 10px 10px 10px;
+	padding: 20px 20px 5px;
 	margin: -20px -20px 20px;
-	z-index: 999;
 }
 
 .content-wrapper {
