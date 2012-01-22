@@ -25,9 +25,9 @@
       var socket = io.connect(window.location.hostname);
       socket.on('new_tweet', function (data) {
         console.log(data);
-        var id = data._id;
+        var id = data.data.id;
 
-        var $item = $("[data-repo-id="+id+"≈");
+        var $item = $('[data-repo-id="'+id+'"]');
 
 
         if($item.length > 0) {
