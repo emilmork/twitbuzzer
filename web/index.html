@@ -46,13 +46,14 @@
           }
 
           var $alert = ich.alert(obj).prependTo("#content-box").hide();
-
-          $alert.fadeIn("fast", function () {
-            var $this = $(this);
-            setTimeout(function () {
-              $this.fadeOut();
-            }, 5000);
-          });
+          $alert.fadeIn();
+          
+          // $alert.fadeIn("fast", function () {
+          //   var $this = $(this);
+          //   setTimeout(function () {
+          //     $this.fadeOut();
+          //   }, 5000);
+          // });
 
         } else {
           var obj = {
@@ -60,13 +61,14 @@
           }
 
           var $alert = ich.alert(obj).prependTo("#content-box").hide();
+          $alert.fadeIn();
 
-          $alert.fadeIn("fast", function () {
-            var $this = $(this);
-            setTimeout(function () {
-              $this.fadeOut();
-            }, 5000);
-          });
+          // $alert.fadeIn("fast", function () {
+          //   var $this = $(this);
+          //   setTimeout(function () {
+          //     $this.fadeOut();
+          //   }, 5000);
+          // });
         }
 
 
