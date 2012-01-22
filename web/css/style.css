@@ -84,7 +84,7 @@ body {
 	padding-left: 15px;
 	background-image: url("/media/forks.png");
 	background-repeat: no-repeat;
-	background-position: 3px 5px;
+	background-position: left top;
 }
 
 #content-box ul.unstyled li .item .watchers span {
