@@ -16,7 +16,7 @@
     <link href="/css/style.css" rel="stylesheet">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/bootstrap-alerts.js"></script>
 
@@ -42,18 +42,23 @@
           });
 
           var obj = {
-            notice: "Repo " + data.data.owner.login + "/" + data.data.name + " got another tweet! Is now at " + data.counter + " tweets.";
+            notice: "Repo " + data.data.owner.login + "/" + data.data.name + " got another tweet! Is now at " + data.counter + " tweets."
           }
+
+          $("#content-box").prepend(ich.alert(obj));
 
         } else {
           var obj = {
-            notice: "Newly tweeted repo: " + data.data.owner.login + "/" + data.data.name + "!";
+            notice: "Newly tweeted repo: " + data.data.owner.login + "/" + data.data.name + "!"
           }
+
+          $("#content-box").prepend(ich.alert(obj));
         }
 
 
         // $("<p />").html("New " + data.type + " item").appendTo("body");
       });
+
 
       var page  = 1,
           history = 1000,
@@ -63,6 +68,8 @@
 
       $(function () {
         loadData("/github");
+
+        $(".alert-message").alert();
 
         var $loadMore = $("<p />").attr("id", "load-more-content");
         $("#content-box ul").after($loadMore);
