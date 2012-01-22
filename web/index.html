@@ -124,6 +124,10 @@
       $(function () {
         loadData("/github");
 
+        $("a[rel=twipsy]").twipsy({
+          live: true
+        });
+
         
 
         var $loadMore = $("<p />").attr("id", "load-more-content");
