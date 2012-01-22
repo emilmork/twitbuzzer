@@ -19,6 +19,7 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/bootstrap-alerts.js"></script>
+    <script src="/js/bootstrap-twipsy.js"></script>
 
     <script src="js/icanhaz.js"></script>
     <script>
@@ -305,13 +306,13 @@
             </div>
             <div class="span3 meta-labels">
               <span class="watchers">
-                <span class="label">{{watchers}}</span>
+                <span class="label" data-placement="below" rel='twipsy' title='Number of Watchers'>{{watchers}}</span>
               </span>
               <span class="forks">
-                <span class="label">{{forks}}</span>
+                <span class="label" data-placement="below" rel='twipsy' title='Number of Forks'>{{forks}}</span>
               </span>
               <span class="count">
-                <span class="label notice">{{count}}</span>
+                <span class="label notice" data-placement="below" rel='twipsy' title='Number of Tweets'>{{count}}</span>
               </span>
             </div>
           </div>
