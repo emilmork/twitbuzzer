@@ -198,7 +198,7 @@
       <div class="content">
         <div class="page-header" id="header">
           <h1 data-tile="twitbuzzer"><a href="#">twitbuzzer</a></h1>
-          <p><small>the twitter live tracker for Github repos and Spotify items</small></p>
+          <p><small>the twitter live tracker for Github repos.</small></p>
         </div>
         <div class="content-wrapper">
           <div class="row">
@@ -210,41 +210,37 @@
               <h3>Settings</h3>
               <form class="form-stacked">
                 <fieldset>
-                  <legend>Filter data</legend>
                   <div class="clearfix">
-                    <label>Date range</label>
+                    <label for="stackedSelect">Time limit</label>
                     <div class="input">
-                      <div class="inline-inputs">
-                        <input class="small" type="date" value="2012-01-10" />
-                        to
-                        <input class="small" type="date" value="2012-01-20" />
-                        <span class="help-block">All times are shown as Pacific Standard Time (GMT -08:00).</span>
-                      </div>
+                      <select name="stackedSelect" id="stackedSelect">
+                        <option>All time</option>
+                        <option>7 days</option>
+                        <option>30 days</option>
+                        <option>365 days</option>
+                      </select>
                     </div>
                   </div><!-- /clearfix -->
                   
                   <div class="clearfix">
-                    <label id="optionsRadio">List of options</label>
+                    <label id="optionsRadio">Show type</label>
                     <div class="input">
                       <ul class="inputs-list">
                         <li>
                           <label>
                             <input type="radio" checked name="optionsRadios" value="option1" />
-                            <span>Option one is this and that&mdash;be sure to include why it’s great</span>
+                            <span>Github Repositories</span>
                           </label>
                         </li>
                         <li>
                           <label>
                             <input type="radio" name="optionsRadios" value="option2" />
-                            <span>Option two can is something else and selecting it will deselect options 1</span>
+                            <span>Spotify Songs</span>
                           </label>
                         </li>
                       </ul>
                     </div>
                   </div><!-- /clearfix -->
-                  <div class="actions">
-                    <input type="submit" class="btn primary" value="Save changes">&nbsp;<button type="reset" class="btn">Cancel</button>
-                  </div>
                 </fieldset>
               </form>
 
