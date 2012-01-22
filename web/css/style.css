@@ -37,6 +37,10 @@ body {
 	z-index: 99;
 }
 
+.page-header p {
+	text-align: right;
+}
+
 .page-header h1 {  
     position: relative;  
     margin-top: 0;
