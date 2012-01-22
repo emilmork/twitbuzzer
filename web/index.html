@@ -60,8 +60,10 @@
 
           var $topItem = $("[data-counter='"+(counter-1)+"']").first();
 
+          console.log("Top item", $topItem);
+
           // Not already at top. 
-          if ($topItem.attr("data-repo-id") != id) {
+          if ($topItem.length > 0 && $topItem.attr("data-repo-id") != id) {
             $item.fadeOut("slow", function () {
               var $oldItem = $(this).detach();
 
