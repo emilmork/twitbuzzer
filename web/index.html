@@ -45,14 +45,28 @@
             notice: "Repo " + data.data.owner.login + "/" + data.data.name + " got another tweet! Is now at " + data.counter + " tweets."
           }
 
-          $("#content-box").prepend(ich.alert(obj));
+          var $alert = ich.alert(obj).prependTo("#content-box").hide();
+
+          $alert.fadeIn("slow", function () {
+            var $this = this;
+            setTimeout(function () {
+              $this.fadeOut();
+            }, 1000);
+          });
 
         } else {
           var obj = {
             notice: "Newly tweeted repo: " + data.data.owner.login + "/" + data.data.name + "!"
           }
 
-          $("#content-box").prepend(ich.alert(obj));
+          var $alert = ich.alert(obj).prependTo("#content-box").hide();
+
+          $alert.fadeIn("slow", function () {
+            var $this = this;
+            setTimeout(function () {
+              $this.fadeOut();
+            }, 1000);
+          });
         }
 
 
