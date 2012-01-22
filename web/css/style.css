@@ -37,6 +37,21 @@ body {
 	z-index: 99;
 }
 
+::selection {
+background:#325177;
+color:#555;
+}
+
+::-moz-selection {
+background:#325177;
+color:#555;
+}
+
+::-webkit-selection {
+background:#325177;
+color:#555;
+}
+
 .page-header p {
 	text-align: right;
 }
