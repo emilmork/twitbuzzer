@@ -7,6 +7,7 @@ body {
 	background: #325177;
 	background: -moz-radial-gradient(center center, rgba(0, 0, 0, 0), rgba(0, 0, 0, .2)) #325177;
 	background: -webkit-gradient(radial, center center, 0, center center, 1000, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 1))) #325177;
+	background-attachment:fixed;
 }
 
 .container {
