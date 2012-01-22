@@ -37,19 +37,11 @@ body {
 	z-index: 99;
 }
 
-::selection {
-background:#325177;
-color:#555;
-}
-
-::-moz-selection {
-background:#325177;
-color:#555;
-}
-
+::selection ,
+::-moz-selection ,
 ::-webkit-selection {
-background:#325177;
-color:#555;
+	background:#2d7e99; 
+	color:#fff;
 }
 
 .page-header p {
