@@ -91,8 +91,6 @@ body {
 	background-image: url("/media/watchers.png");
 }
 
-#content-box ul.unstyled li .item .watchers,
-#content-box ul.unstyled li .item .count,
-#content-box ul.unstyled li .item .forks {
+#content-box ul.unstyled li .item .meta-labels {
 	text-align: right;
 }
