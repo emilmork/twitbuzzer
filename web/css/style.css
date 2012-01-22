@@ -152,9 +152,12 @@ body {
 	margin-top: 5px;
 	color: #ddd;
 }
-
+.content-wrapper > row {
+	position: relative;
+}
 .sidebar {
 	position: fixed;
+	right: 0px;
 }
 
 #header {
