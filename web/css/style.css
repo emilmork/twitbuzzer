@@ -41,7 +41,7 @@ body {
     position: relative;  
     margin-top: 0;  
     text-shadow: 2px 3px 3px #292929;  
-    letter-spacing: -7px;  
+    letter-spacing: 10px;  
     -webkit-text-stroke: 1px white;  
 }  
 
