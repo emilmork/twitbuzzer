@@ -37,6 +37,11 @@ body {
 	z-index: 99;
 }
 
+.page-header h1 {
+	color: #222;
+	text-shadow: 0px 2px 3px #555;
+}
+
 .content-wrapper {
 	margin-top: 50px;
 }
