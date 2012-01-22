@@ -107,10 +107,8 @@
 
       function infiniteScroll (scrollingMargin, callback) {
         $(window).scroll(function() {
-          console.log("Scrolling...", $(window).scrollTop(), scrollingMargin, $(document).height() - $(window).height());
           if($(window).scrollTop() + scrollingMargin > $(document).height() - $(window).height() && !isLoading) {
             page += 1;
-            console.log("Loading new data...");
             callback();
           }
         });
@@ -284,10 +282,10 @@
               <h3><a href="{{url}}" title="{{name}}">{{name}}</a></h3>
             </div>
             <div class="span1" class="watchers">
-              {{watchers}}
+              <span class="label">{{watchers}}</span>
             </div>
             <div class="span1" class="forks">
-              {{forks}}
+              <span class="label">{{forks}}</span>
             </div>
             <div class="span1" class="count">
               <span class="label notice">{{count}}</span>
