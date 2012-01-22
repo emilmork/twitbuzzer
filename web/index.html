@@ -35,7 +35,7 @@
           $plusOne.appendTo($item.find(".counter")).hide();
 
           $plusOne.fadeIn("slow", function () {
-            var $this = this;
+            var $this = $(this);
             setTimeout(function () {
               $this.fadeOut();
             }, 1000);
@@ -48,7 +48,7 @@
           var $alert = ich.alert(obj).prependTo("#content-box").hide();
 
           $alert.fadeIn("slow", function () {
-            var $this = this;
+            var $this = $(this);
             setTimeout(function () {
               $this.fadeOut();
             }, 1000);
@@ -62,7 +62,7 @@
           var $alert = ich.alert(obj).prependTo("#content-box").hide();
 
           $alert.fadeIn("slow", function () {
-            var $this = this;
+            var $this = $(this);
             setTimeout(function () {
               $this.fadeOut();
             }, 1000);
