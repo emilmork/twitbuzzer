@@ -45,30 +45,28 @@
             notice: "Repo " + data.data.owner.login + "/" + data.data.name + " got another tweet! Is now at " + data.counter + " tweets."
           }
 
-          ich.alert(obj).prependTo("#content-box");
-          // $alert.fadeIn();
+          var $alert = ich.alert(obj).prependTo("#content-box").hide()
 
-          // $alert.fadeIn("fast", function () {
-          //   var $this = $(this);
-          //   setTimeout(function () {
-          //     $this.fadeOut();
-          //   }, 5000);
-          // });
+          $alert.fadeIn("fast", function () {
+            var $this = $(this);
+            setTimeout(function () {
+              $this.fadeOut();
+            }, 5000);
+          });
 
         } else {
           var obj = {
             notice: "Newly tweeted repo: " + data.data.owner.login + "/" + data.data.name + "!"
           }
 
-          ich.alert(obj).prependTo("#content-box");
-          // $alert.fadeIn();
+          var $alert = ich.alert(obj).prependTo("#content-box").hide()
 
-          // $alert.fadeIn("fast", function () {
-          //   var $this = $(this);
-          //   setTimeout(function () {
-          //     $this.fadeOut();
-          //   }, 5000);
-          // });
+          $alert.fadeIn("fast", function () {
+            var $this = $(this);
+            setTimeout(function () {
+              $this.fadeOut();
+            }, 5000);
+          });
         }
 
 
@@ -302,7 +300,7 @@
     </script>
 
     <script id="alert" type="text/html">
-      <div class="alert-message warning fade" data-alert="alert">
+      <div class="alert-message warning fade in" data-alert="alert">
         <a class="close" href="#">×</a>
         <p>{{notice}}</p>
       </div>
