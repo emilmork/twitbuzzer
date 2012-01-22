@@ -152,10 +152,10 @@ body {
 	margin-top: 5px;
 	color: #ddd;
 }
-.content-wrapper {
+.content-wrapper > .row > .span5 {
 	position: relative;
 }
-.sidebar {
+.content-wrapper .sidebar {
 	position: fixed;
 	right: 0px;
 }
