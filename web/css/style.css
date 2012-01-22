@@ -48,6 +48,7 @@ body {
     text-decoration: none;  
     color: #325177;  
     position: absolute;  
+    font-weight: bold;
 
     -webkit-mask-image: -webkit-gradient(linear, left top, left bottombottom, from(rgba(0,0,0,1)), color-stop(50%, rgba(0,0,0,0)), to(rgba(0,0,0,1)));  
     text-shadow: 0 1px 0 #e9e9e9;  
