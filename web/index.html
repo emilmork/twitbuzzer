@@ -34,11 +34,11 @@
           var $plusOne = $("<span />").html("+1");
           $plusOne.appendTo($item.find(".counter")).hide();
 
-          $plusOne.fadeIn("slow", function () {
+          $plusOne.fadeIn("fast", function () {
             var $this = $(this);
             setTimeout(function () {
               $this.fadeOut();
-            }, 1000);
+            }, 3000);
           });
 
           var obj = {
@@ -47,11 +47,11 @@
 
           var $alert = ich.alert(obj).prependTo("#content-box").hide();
 
-          $alert.fadeIn("slow", function () {
+          $alert.fadeIn("fast", function () {
             var $this = $(this);
             setTimeout(function () {
               $this.fadeOut();
-            }, 1000);
+            }, 5000);
           });
 
         } else {
@@ -61,11 +61,11 @@
 
           var $alert = ich.alert(obj).prependTo("#content-box").hide();
 
-          $alert.fadeIn("slow", function () {
+          $alert.fadeIn("fast", function () {
             var $this = $(this);
             setTimeout(function () {
               $this.fadeOut();
-            }, 1000);
+            }, 5000);
           });
         }
 

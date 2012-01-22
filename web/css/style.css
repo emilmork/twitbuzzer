@@ -81,10 +81,10 @@ body {
 
 #content-box ul.unstyled li .item .watchers span,
 #content-box ul.unstyled li .item .forks span {
-	padding-left: 15px;
+	padding-left: 20px;
 	background-image: url("/media/forks.png");
 	background-repeat: no-repeat;
-	background-position: left top;
+	background-position: 5px -2px;
 }
 
 #content-box ul.unstyled li .item .watchers span {
