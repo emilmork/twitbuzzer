@@ -27,7 +27,7 @@
         console.log(data);
         var id = data.data.id;
 
-        var $item = $('[data-repo-id="'+id+'"] .item');
+        var $item = $('[data-repo-id="'+id+'"]');
 
 
         if($item.length > 0) {
@@ -51,8 +51,24 @@
           var counter = parseInt($counter.html()) + 1;
           console.log("Int value:", counter);
           $counter.html(counter);
+          $item.attr("data-count", counter);
 
           console.log("Result:", $counter);
+
+
+          // Move item up. 
+
+          var $topItem = $("[data-counter='"+(counter-1)+"']").first();
+
+          // Not already at top. 
+          if ($topItem.attr("data-repo-id") != id) {
+            $item.fadeOut("slow", function () {
+              var $oldItem = $(this).detach();
+
+              $topItem.before($oldItem);
+              $oldItem.fadeIn("slow");
+            })
+          }
 
           var obj = {
             notice: "Repo " + data.data.owner.login + "/" + data.data.name + " got another tweet! Is now at " + counter + " tweets."
@@ -68,6 +84,8 @@
               });
             }, 5000);
           });
+
+
 
         } else {
           var obj = {
@@ -276,7 +294,7 @@
     </div> <!-- /container -->
 
     <script id="item" type="text/html">
-      <li data-repo-id="{{id}}">
+      <li data-repo-id="{{id}}" data-count="{{count}}">
         <div class="item">
           <div class="row">
             <div class="span5">
