@@ -84,9 +84,15 @@ body {
 	padding-left: 20px;
 	background-image: url("/media/forks.png");
 	background-repeat: no-repeat;
-	background-position: 5px -4px;
+	background-position: 2px -4px;
 }
 
 #content-box ul.unstyled li .item .watchers span {
 	background-image: url("/media/watchers.png");
+}
+
+#content-box ul.unstyled li .item .watchers,
+#content-box ul.unstyled li .item .count,
+#content-box ul.unstyled li .item .forks {
+	text-align: right;
 }
