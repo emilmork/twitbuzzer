@@ -146,6 +146,11 @@ body {
 	text-align: center; /* center align it with the container */
 }
 
+.container > footer {
+	border: none;
+	color: #ddd;
+}
+
 #header {
 	width: 820px; 
 	position: fixed;
