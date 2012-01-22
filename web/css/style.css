@@ -25,7 +25,6 @@ body {
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
 	box-shadow: 0 1px 2px rgba(0,0,0,.15);
-	margin-top: 50px;
 }
 
 /* Page header tweaks */
@@ -35,7 +34,10 @@ body {
 	background: -webkit-gradient(linear, center center, 0, center center, 1000, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 1))) #333;
 	padding: 20px 20px 10px;
 	margin: -20px -20px 20px;
-	margin-top: -50px;
+}
+
+.content-wrapper {
+	margin-top: 50px;
 }
 
 /* Give a quick and non-cross-browser friendly divider */

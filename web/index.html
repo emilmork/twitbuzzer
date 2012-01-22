@@ -193,98 +193,66 @@
         <div class="page-header" id="header">
           <h1>twitbuzzer <small>the twitter live tracker for Github repos and Spotify items</small></h1>
         </div>
-        <div class="row">
-          <div class="span9" id="content-box">
-            <ul class="unstyled">
-            </ul>
-          </div>
-          <div class="span5">
-            <h3>Settings</h3>
-            <form class="form-stacked">
-              <fieldset>
-                <legend>Example form legend</legend>
-                <!--<div class="clearfix">
-                  <label id="optionsCheckboxes">List of options</label>
-                  <div class="input">
-                    <ul class="inputs-list">
-                      <li>
-                        <label>
-                          <input type="checkbox" name="optionsCheckboxes" value="option1" />
-                          <span>Option one</span>
-                        </label>
-                      </li>
-                      <li>
-                        <label>
-                          <input type="checkbox" name="optionsCheckboxes" value="option2" />
-                          <span>Option two</span>
-                        </label>
-                      </li>
-                      <li>
-                        <label>
-                          <input type="checkbox" name="optionsCheckboxes" value="option2" />
-                          <span>Option three</span>
-                        </label>
-                      </li>
-                      <li>
-                        <label class="disabled">
-                          <input type="checkbox" name="optionsCheckboxes" value="option2" disabled />
-                          <span>Option four cannot be checked as it is disabled.</span>
-                        </label>
-                      </li>
-                    </ul>
-                    <span class="help-block">
-                      <strong>Note:</strong> Labels surround all the options for much larger click areas and a more usable form.
-                    </span>
-                  </div>
-                </div>!-- /clearfix -->
-                <div class="clearfix">
-                  <label>Date range</label>
-                  <div class="input">
-                    <div class="inline-inputs">
-                      <input class="small" type="date" value="2012-01-10" />
-                      to
-                      <input class="small" type="date" value="2012-01-20" />
-                      <span class="help-block">All times are shown as Pacific Standard Time (GMT -08:00).</span>
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="span9" id="content-box">
+              <ul class="unstyled">
+              </ul>
+            </div>
+            <div class="span5">
+              <h3>Settings</h3>
+              <form class="form-stacked">
+                <fieldset>
+                  <legend>Filter data</legend>
+                  <div class="clearfix">
+                    <label>Date range</label>
+                    <div class="input">
+                      <div class="inline-inputs">
+                        <input class="small" type="date" value="2012-01-10" />
+                        to
+                        <input class="small" type="date" value="2012-01-20" />
+                        <span class="help-block">All times are shown as Pacific Standard Time (GMT -08:00).</span>
+                      </div>
                     </div>
+                  </div><!-- /clearfix -->
+                  
+                  <div class="clearfix">
+                    <label id="optionsRadio">List of options</label>
+                    <div class="input">
+                      <ul class="inputs-list">
+                        <li>
+                          <label>
+                            <input type="radio" checked name="optionsRadios" value="option1" />
+                            <span>Option one is this and that&mdash;be sure to include why it’s great</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label>
+                            <input type="radio" name="optionsRadios" value="option2" />
+                            <span>Option two can is something else and selecting it will deselect options 1</span>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div><!-- /clearfix -->
+                  <div class="actions">
+                    <input type="submit" class="btn primary" value="Save changes">&nbsp;<button type="reset" class="btn">Cancel</button>
                   </div>
-                </div><!-- /clearfix -->
-                
-                <div class="clearfix">
-                  <label id="optionsRadio">List of options</label>
-                  <div class="input">
-                    <ul class="inputs-list">
-                      <li>
-                        <label>
-                          <input type="radio" checked name="optionsRadios" value="option1" />
-                          <span>Option one is this and that&mdash;be sure to include why it’s great</span>
-                        </label>
-                      </li>
-                      <li>
-                        <label>
-                          <input type="radio" name="optionsRadios" value="option2" />
-                          <span>Option two can is something else and selecting it will deselect options 1</span>
-                        </label>
-                      </li>
-                    </ul>
-                  </div>
-                </div><!-- /clearfix -->
-                <div class="actions">
-                  <input type="submit" class="btn primary" value="Save changes">&nbsp;<button type="reset" class="btn">Cancel</button>
-                </div>
-              </fieldset>
-            </form>
+                </fieldset>
+              </form>
 
 
-            <h3>Thanks to</h3>
-            <dl>
-              <dn><b>Twitter Bootstrap</b></dn>
-              <dd>http://github.com/twitter/bootstrap</dd>
-              <dn><b>Node-spotify</b></dn>
-              <dd>http://github.com/twitter/node-spotify</dd>
-              <dn><b>Socket.IO</b></dn>
-              <dd>http://socket.io</dd>
-            </dl>
+              <h3>Thanks to</h3>
+              <dl>
+                <dn><b>Twitter Bootstrap</b></dn>
+                <dd>http://github.com/twitter/bootstrap</dd>
+                <dn><b>Node-spotify</b></dn>
+                <dd>http://github.com/twitter/node-spotify</dd>
+                <dn><b>Socket.IO</b></dn>
+                <dd>http://socket.io</dd>
+              </dl>
 
+            </div>
           </div>
         </div>
       </div>
