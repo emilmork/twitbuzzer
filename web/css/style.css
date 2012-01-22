@@ -46,7 +46,7 @@ body {
 
 .page-header h1 a {  
     text-decoration: none;  
-    color: #ddd;  
+    color: #325177;  
     position: absolute;  
 
     -webkit-mask-image: -webkit-gradient(linear, left top, left bottombottom, from(rgba(0,0,0,1)), color-stop(50%, rgba(0,0,0,0)), to(rgba(0,0,0,1)));  
@@ -61,7 +61,7 @@ body {
 }  
 
 .page-header h1:after {  
-    color: #333;  
+    color: #bdbdbd;  
     content : attr(data-title);  
 }  
 
