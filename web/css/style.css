@@ -93,4 +93,5 @@ body {
 
 #content-box ul.unstyled li .item .meta-labels {
 	text-align: right;
+	float:right;
 }
