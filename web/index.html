@@ -37,7 +37,9 @@
           $plusOne.fadeIn("fast", function () {
             var $this = $(this);
             setTimeout(function () {
-              $this.fadeOut();
+              $this.fadeOut("slow", function () {
+                $this.remove();
+              });
             }, 3000);
           });
 
@@ -50,7 +52,9 @@
           $alert.fadeIn("fast", function () {
             var $this = $(this);
             setTimeout(function () {
-              $this.fadeOut();
+              $this.fadeOut("slow", function () {
+                $this.remove();
+              });
             }, 5000);
           });
 
@@ -64,7 +68,9 @@
           $alert.fadeIn("fast", function () {
             var $this = $(this);
             setTimeout(function () {
-              $this.fadeOut();
+              $this.fadeOut("slow", function () {
+                $this.remove();
+              });
             }, 5000);
           });
         }
