@@ -39,9 +39,9 @@ body {
 
 .page-header h1 {  
     position: relative;  
-    margin-top: 0;  
+    margin-top: 0;
+    font-family: 'Myriad-Pro', 'Myriad', helvetica, arial, sans-serif;
     text-shadow: 2px 3px 3px #292929;  
-    letter-spacing: 10px;  
     -webkit-text-stroke: 1px white;  
 }  
 
