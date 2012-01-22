@@ -16,6 +16,7 @@
     <link href="/css/style.css" rel="stylesheet">
     
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/bootstrap-alerts.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="js/icanhaz.js"></script>
@@ -23,6 +24,33 @@
       var socket = io.connect(window.location.hostname);
       socket.on('new_tweet', function (data) {
         console.log(data);
+        var id = data._id;
+
+        var $item = $("[data-repo-id="+id+"≈");
+
+
+        if($item.length > 0) {
+          var $plusOne = $("<span />").html("+1");
+          $plusOne.appendTo($item.find(".counter")).hide();
+
+          $plusOne.fadeIn("slow", function () {
+            var $this = this;
+            setTimeout(function () {
+              $this.fadeOut();
+            }, 1000);
+          });
+
+          var obj = {
+            notice: "Repo " + data.data.owner.login + "/" + data.data.name + " got another tweet! Is now at " + data.counter + " tweets.";
+          }
+
+        } else {
+          var obj = {
+            notice: "Newly tweeted repo: " + data.data.owner.login + "/" + data.data.name + "!";
+          }
+        }
+
+
         // $("<p />").html("New " + data.type + " item").appendTo("body");
       });
 
@@ -254,7 +282,7 @@
               {{forks}}
             </div>
             <div class="span1" class="count">
-              {{count}}
+              <span class="label notice">{{count}}</span>
             </div>
           </div>
           <p>{{description}}</p>
@@ -275,5 +303,12 @@
         </div>
       </li>
     </script>
+
+    <script id="alert" type="text/html">
+      <div class="alert-message warning">
+        <a class="close" href="#">×</a>
+        <p>{{notice}}</p>
+      </div>
+  </script>
   </body>
 </html>
