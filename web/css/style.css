@@ -77,3 +77,14 @@ body {
 	width: 30px;
 	display: block;
 }
+
+
+#content-box ul.unstyled li .item .watchers,
+#content-box ul.unstyled li .item .forks {
+	padding-left: 10px;
+	background: url("media/forks.gif") no-repeat left top;
+}
+
+#content-box ul.unstyled li .item .watchers {
+	background: url("media/watchers.gif") no-repeat left top;
+}
