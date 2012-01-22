@@ -98,5 +98,6 @@ body {
 }
 
 #header {
+	width: 820px; 
 	position: fixed;
 }
