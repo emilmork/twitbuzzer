@@ -58,7 +58,7 @@
 
           // Move item up. 
 
-          var $topItem = $("[data-counter='"+(counter-1)+"']").first();
+          var $topItem = $("[data-count='"+(counter-1)+"']").first();
 
           console.log("Top item", $topItem);
 
@@ -66,6 +66,7 @@
           if ($topItem.length > 0 && $topItem.attr("data-repo-id") != id) {
             $item.fadeOut("slow", function () {
               var $oldItem = $(this).detach();
+              console.log("Old item", $oldItem);
 
               $topItem.before($oldItem);
               $oldItem.fadeIn("slow");
