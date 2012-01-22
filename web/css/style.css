@@ -82,9 +82,9 @@ body {
 #content-box ul.unstyled li .item .watchers span,
 #content-box ul.unstyled li .item .forks span {
 	padding-left: 10px;
-	background: url("media/forks.gif") no-repeat left top;
+	background: url("/media/forks.gif") no-repeat left top;
 }
 
 #content-box ul.unstyled li .item .watchers span {
-	background: url("media/watchers.gif") no-repeat left top;
+	background: url("/media/watchers.gif") no-repeat left top;
 }
