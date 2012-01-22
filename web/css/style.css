@@ -152,7 +152,7 @@ body {
 	margin-top: 5px;
 	color: #ddd;
 }
-.content-wrapper > row {
+.content-wrapper {
 	position: relative;
 }
 .sidebar {
