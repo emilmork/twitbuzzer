@@ -158,9 +158,10 @@ $("[data-modal='modal-from-dom']").live("click", function () {
     type: "GET",
     dataType: "jsonp",
     url: url,
+    contentType: "application/json"
   }).done(function( data ) {
     console.log("Data:", data);
-    $modal.html(ich.modalbody(data));
+    $modal.html(ich.modalbody(data.data));
     $modal.modal('show');
   }).error(function (a, b, c, d) {
     console.log("Error:",a,b,c,d);
