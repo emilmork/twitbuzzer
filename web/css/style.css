@@ -113,7 +113,11 @@ body {
 #content-box ul.unstyled li .actions {
 	padding: 10px;
 }
-#content-box ul.unstyled li .meta-author .span6 {
+#content-box ul.unstyled li .meta-author .meta-labels {
+	text-align: right;
+	float: right;
+}
+#content-box ul.unstyled li .meta-author .user-info {
 	margin-left: 0px;
 	padding-top: 7px;
 }
