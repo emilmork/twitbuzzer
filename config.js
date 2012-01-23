@@ -5,7 +5,7 @@ exports.app = {
 	GITHUB_REGEX: /http(?:s?):\/\/github\.com\/([a-zA-Z0-9\_\-]+)\/([a-zA-Z0-9\_\-]+)\/?/,
 
 	// MongoDB Settings
-	// Stupid me... Had to commit prod sensitive data. 
+	// Stupid me... Had to commit prod sensitive data. :(
 	// User/Pass/Keys are now changed and using enviroment data instead.
 	DB_URL: process.env.MONGO_DB_URL,
 	DB_NAME: process.env.MONGO_DB_NAME,
@@ -18,6 +18,3 @@ exports.app = {
 	access_token_key: process.env.TWITTER_access_token_key,
 	access_token_secret: process.env.TWITTER_access_token_secret
 }
-
-
-console.log("Data: ", exports.app);
