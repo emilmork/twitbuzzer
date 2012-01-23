@@ -149,7 +149,7 @@ function infiniteScroll (scrollingMargin, callback) {
 }
 
 
-$('#modal-from-dom').bind('hidden', function (event, dsa) {
+$('#modal-from-dom').bind('show', function (event, dsa) {
   // do something ...
 
   console.log("Modal data:", event, dsa);
