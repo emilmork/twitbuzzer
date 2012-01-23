@@ -159,9 +159,12 @@ $("[data-modal='modal-from-dom']").live("click", function () {
     dataType: "jsonp",
     url: url,
   }).done(function( data ) {
+    console.log("Data:", data);
     $modal.html(ich.modalbody(data));
     $modal.modal('show');
-  });
+  }).error(function (a, b, c, d) {
+    console.log("Error:",a,b,c,d);
+  })
 
 })
 
