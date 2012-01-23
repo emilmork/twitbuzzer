@@ -94,7 +94,7 @@ function handleStream () {
         if(data.entities.urls.length < 1) return;
 
         var githubData  = getGithubID(data.entities.urls);
-        // var spotifyData = getSpotifyID(data.entities.urls);
+        var spotifyData = getSpotifyID(data.entities.urls);
 
         if (githubData.length > 0) {
             // console.log("---- githubData:");
@@ -104,10 +104,10 @@ function handleStream () {
         } 
         
         if (spotifyData.length > 0 ) {
-        // console.log("---- SpotifyData:");
-        // console.log(data.text);
-        // console.log(spotifyData);
-        emitSpotify(spotifyData);
+            // console.log("---- SpotifyData:");
+            // console.log(data.text);
+            // console.log(spotifyData);
+            emitSpotify(spotifyData);
         }
     }
 }
