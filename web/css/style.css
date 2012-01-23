@@ -167,3 +167,8 @@ body {
 	width: 820px; 
 	position: fixed;
 }
+
+
+.alert-message {
+	width: 250px;
+}
