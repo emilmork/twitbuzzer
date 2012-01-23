@@ -126,17 +126,7 @@
     </div> <!-- /container -->
 
     <div id="modal-from-dom" class="modal hide fade">
-      <div class="modal-header">
-        <a href="#" class="close">&times;</a>
-        <h3>Modal Heading</h3>
-      </div>
-      <div class="modal-body">
-        <p>One fine body…</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn primary">Primary</a>
-        <a href="#" class="btn secondary">Secondary</a>
-      </div>
+      
     </div>
 
 
@@ -174,7 +164,7 @@
               </a>
             </div>
             <div class="span3 meta-labels">
-              <a class="btn small info" data-github-api="{{api_url}}" data-controls-modal="modal-from-dom" data-backdrop="static">More info</a>
+              <a class="btn small info" data-github-api="{{api_url}}" data-modal="modal-from-dom" data-backdrop="static">More info</a>
             </div>
           </div>
         </div>
@@ -186,6 +176,48 @@
         <a class="close" href="#">×</a>
         <p>{{notice}}</p>
       </div>
-  </script>
+    </script>
+
+    <script id="modalbody" type="text/html">
+      <div class="modal-header">
+        <a href="#" class="close">&times;</a>
+        <div class="row">
+            <div class="span5">
+              <h3><a href="{{html_url}}" title="{{name}}">{{name}}</a></h3>
+            </div>
+            <div class="span3 meta-labels">
+              <span class="watchers">
+                <span class="label" data-placement="below" rel='twipsy' title='Number of Watchers'>{{watchers}}</span>
+              </span>
+              <span class="forks">
+                <span class="label" data-placement="below" rel='twipsy' title='Number of Forks'>{{forks}}</span>
+              </span>
+              <span class="count">
+                <span class="label notice" data-placement="below" rel='twipsy' title='Number of Tweets'>{{count}}</span>
+              </span>
+            </div>
+          </div>
+      </div>
+      <div class="modal-body">
+        <p>{{description}}</p>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+            <div class="span1">
+              <a href="{{#owner}}{{url}}{{/owner}}">
+                <img class="thumbnail" src="{{#owner}}{{avatar_url}}{{/owner}}" alt="{{#owner}}{{login}}{{/owner}}">
+              </a> 
+            </div>
+            <div class="span4 user-info">
+              <a href="{{#owner}}{{url}}{{/owner}}">
+                {{#owner}}{{login}}{{/owner}}
+              </a>
+            </div>
+            <div class="span3 meta-labels">
+              <a href="#" class="btn primary">Done</a>
+            </div>
+          </div>
+      </div>
+    </script>
   </body>
 </html>
