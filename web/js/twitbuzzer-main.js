@@ -149,6 +149,18 @@ function infiniteScroll (scrollingMargin, callback) {
 }
 
 
+$("[data-modal='modal-from-dom']").live("click", function () {
+  var url = $(this).attr("data-github-api");
+  var $modal = $("#"+$(this).attr("data-modal"));
+
+
+  $.getJSON (url, function (data) {
+     $modal.html(ich.modalbody(data));
+     $modal.modal('show');
+  });
+
+})
+
 $('#modal-from-dom').bind('show', function (event, dsa) {
   // do something ...
 
