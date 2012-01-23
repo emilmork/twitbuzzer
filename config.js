@@ -18,3 +18,6 @@ exports.app = {
 	access_token_key: process.env.TWITTER_access_token_key,
 	access_token_secret: process.env.TWITTER_access_token_secret
 }
+
+
+console.log("Data: ", exports.app);
