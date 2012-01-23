@@ -158,7 +158,7 @@ $("[data-github-api]").live("click", function () {
   var url = $(this).attr("data-github-api");
   var $modal = $("#modal-from-dom");
 
-  $modal.html("<p>Loading...</p>");
+  $modal.html("<p id='modal-loading'>Loading...</p>");
 
   $.ajax({
     type: "GET",
