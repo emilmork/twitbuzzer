@@ -105,6 +105,9 @@ body {
 	margin: 20px auto;
 	font-weight: bold;
 	padding-top: 20px;
+	background-position: center top;
+	text-align: center;
+	font-style: italic;
 }
 
 #content-box ul.unstyled li {
