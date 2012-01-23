@@ -155,6 +155,8 @@ function emitSpotify(spotifyData) {
 
     spotifyData.forEach(function (elm) {
         obj.info = elm;
+
+        console.log("Spotify info:",obj);
         spotify.lookup({ type: elm[0], id: elm[1] }, emitData(obj));
     });
 }
