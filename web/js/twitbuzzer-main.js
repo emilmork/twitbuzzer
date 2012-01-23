@@ -154,7 +154,7 @@ $('#modal-from-dom').modal({
   backdrop: true
 });
 
-$("[data-modal='modal-from-dom']").live("click", function () {
+$("[data-github-api]").live("click", function () {
   var url = $(this).attr("data-github-api");
   var $modal = $("#modal-from-dom");
 
@@ -174,7 +174,7 @@ $("[data-modal='modal-from-dom']").live("click", function () {
     }
 
     $modal.html(ich.modalbody(data.data));
-    $modal.modal('show');
+    // $modal.modal('show');
   })
 
 })
