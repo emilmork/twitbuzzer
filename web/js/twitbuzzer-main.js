@@ -154,9 +154,13 @@ $("[data-modal='modal-from-dom']").live("click", function () {
   var $modal = $("#"+$(this).attr("data-modal"));
 
 
-  $.getJSON (url, function (data) {
-     $modal.html(ich.modalbody(data));
-     $modal.modal('show');
+  $.ajax({
+    type: "GET",
+    dataType: "jsonp",
+    url: url,
+  }).done(function( data ) {
+    $modal.html(ich.modalbody(data));
+    $modal.modal('show');
   });
 
 })
