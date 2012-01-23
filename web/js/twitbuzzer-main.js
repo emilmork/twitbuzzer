@@ -1,6 +1,9 @@
 var socket = io.connect(window.location.hostname);
 socket.on('new_tweet', function (data) {
   console.log(data);
+
+  if ( data.type != "github") return;
+  
   var id = data.data.id;
 
   var $item = $('[data-repo-id="'+id+'"]');
