@@ -53,7 +53,7 @@ socket.on('new_tweet', function (data) {
       notice: "Repo " + data.data.owner.login + "/" + data.data.name + " got another tweet! Is now at " + counter + " tweets."
     }
 
-    var $alert = ich.alert(obj).prependTo(".sidebar").hide()
+    var $alert = ich.alert(obj).appendTo(".sidebar").hide()
 
     $alert.fadeIn("fast", function () {
       var $this = $(this);
@@ -71,7 +71,7 @@ socket.on('new_tweet', function (data) {
       notice: "Newly tweeted repo: " + data.data.owner.login + "/" + data.data.name + "!"
     }
 
-    var $alert = ich.alert(obj).prependTo(".sidebar").hide()
+    var $alert = ich.alert(obj).appendTo(".sidebar").hide()
 
     $alert.fadeIn("fast", function () {
       var $this = $(this);
