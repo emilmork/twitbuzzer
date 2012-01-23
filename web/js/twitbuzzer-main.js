@@ -161,10 +161,16 @@ $("[data-modal='modal-from-dom']").live("click", function () {
     contentType: "application/json"
   }).done(function( data ) {
     console.log("Data:", data);
+
+    if(/\?/.test(data.data.owner.avatar_url)) {
+      data.data.owner.avatar_url += "&s=30";
+    } else {
+      data.data.owner.avatar_url += "?s=30";
+    }
+
+
     $modal.html(ich.modalbody(data.data));
     $modal.modal('show');
-  }).error(function (a, b, c, d) {
-    console.log("Error:",a,b,c,d);
   })
 
 })
@@ -176,7 +182,8 @@ $('#modal-from-dom').bind('show', function (event, dsa) {
 });
 
 $('#modal-from-dom').modal({
-  keyboard: true
+  keyboard: true,
+  backdrop: "static"
 })
 
 
