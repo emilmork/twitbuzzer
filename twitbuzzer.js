@@ -53,7 +53,6 @@ app.get(/^\/spotify(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
     getAPIData('listSpotify', req, res);
 });
 
-
 function getAPIData (type, req, res) {
     res.contentType('application/json');
     var params = req.params;
