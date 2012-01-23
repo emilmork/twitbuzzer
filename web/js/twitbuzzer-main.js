@@ -168,7 +168,6 @@ $("[data-modal='modal-from-dom']").live("click", function () {
       data.data.owner.avatar_url += "?s=30";
     }
 
-
     $modal.html(ich.modalbody(data.data));
     $modal.modal('show');
   })
@@ -183,7 +182,7 @@ $('#modal-from-dom').bind('show', function (event, dsa) {
 
 $('#modal-from-dom').modal({
   keyboard: true,
-  backdrop: "static"
+  backdrop: true
 })
 
 

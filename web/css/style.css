@@ -113,15 +113,18 @@ body {
 #content-box ul.unstyled li .actions {
 	padding: 10px;
 }
+#modal-from-dom .meta-author .meta-labels {
 #content-box ul.unstyled li .meta-author .meta-labels {
 	text-align: right;
 	float: right;
 }
+#modal-from-dom .meta-author .user-info {
 #content-box ul.unstyled li .meta-author .user-info {
 	margin-left: 0px;
 	padding-top: 7px;
 }
 
+#modal-from-dom .meta-author img,
 #content-box ul.unstyled li .meta-author img {
 	height: 30px;
 	width: 30px;
@@ -129,7 +132,9 @@ body {
 }
 
 
+#modal-from-dom .watchers span,
 #content-box ul.unstyled li .item .watchers span,
+#modal-from-dom .forks span,
 #content-box ul.unstyled li .item .forks span {
 	padding-left: 18px;
 	background-image: url("/media/forks.png");
@@ -137,10 +142,12 @@ body {
 	background-position: 2px -4px;
 }
 
+#modal-from-dom .watchers span {
 #content-box ul.unstyled li .item .watchers span {
 	background-image: url("/media/watchers.png");
 }
 
+#mmodal-from-dom .meta-labels {
 #content-box ul.unstyled li .item .meta-labels {
 	text-align: right;
 	float:right;
