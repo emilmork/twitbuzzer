@@ -154,6 +154,11 @@ $('#modal-from-dom').modal({
   backdrop: true
 });
 
+$('.btn', '#modal-from-dom').live('click', function () {
+  $('#modal-from-dom').modal('hide');
+  return false;
+});
+
 $("[data-github-api]").live("click", function () {
   var url = $(this).attr("data-github-api");
   var $modal = $("#modal-from-dom");
