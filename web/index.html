@@ -120,14 +120,30 @@
       <footer>
         <p>&copy; TwitBuzzer 2011</p>
       </footer>
+
     </div> <!-- /container -->
+
+    <div id="modal-from-dom" class="modal hide fade">
+      <div class="modal-header">
+        <a href="#" class="close">&times;</a>
+        <h3>Modal Heading</h3>
+      </div>
+      <div class="modal-body">
+        <p>One fine body…</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn primary">Primary</a>
+        <a href="#" class="btn secondary">Secondary</a>
+      </div>
+    </div>
+
 
     <script id="item" type="text/html">
       <li data-repo-id="{{id}}" data-count="{{count}}">
         <div class="item">
           <div class="row">
             <div class="span5">
-              <h3><a href="{{html_url}}" title="{{name}}">{{name}}</a> <small>(<a href="#">read more</a>)</small></h3>
+              <h3><a href="{{html_url}}" title="{{name}}">{{name}}</a></h3>
             </div>
             <div class="span3 meta-labels">
               <span class="watchers">
@@ -150,10 +166,13 @@
                 <img class="thumbnail" src="{{#owner}}{{avatar_url}}{{/owner}}" alt="{{#owner}}{{login}}{{/owner}}">
               </a> 
             </div>
-            <div class="span6">
+            <div class="span4">
               <a href="{{#owner}}{{url}}{{/owner}}">
                 {{#owner}}{{login}}{{/owner}}
               </a>
+            </div>
+            <div class="span3 meta-labels">
+              <a href="#" class="btn small info">More info</a>
             </div>
           </div>
         </div>
