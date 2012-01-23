@@ -92,12 +92,19 @@ body {
 	border: 0;
 }
 
-#load-more-content {
+#load-more-content,
+#modal-loading {
 	background: url("/media/ajax-loader.gif") no-repeat center center;
 	display: block;
 	margin: 0px auto;
 	clear: both;
 	height: 30px;
+}
+
+#modal-loading {
+	margin: 20px auto;
+	font-weight: bold;
+	padding-top: 20px;
 }
 
 #content-box ul.unstyled li {
