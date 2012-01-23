@@ -149,6 +149,16 @@ function infiniteScroll (scrollingMargin, callback) {
 }
 
 
+$('#modal-from-dom').bind('hidden', function (event, dsa) {
+  // do something ...
+
+  console.log("Modal data:", event, dsa);
+});
+
+$('#modal-from-dom').modal({
+  keyboard: true
+})
+
 
 // Big up to Jeffrey Way for this noise generator (http://net.tutsplus.com/tutorials/javascript-ajax/how-to-generate-noise-with-canvas/)
 
