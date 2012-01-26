@@ -67,28 +67,28 @@
                 <form class="form-stacked">
                   <fieldset>
                     <div class="clearfix">
-                      <label for="prependedInput">Filter data</label>
+                      <label for="searchInput">Filter data</label>
                       <div class="input">
                         <div class="input-prepend">
                           <span class="add-on"><img src="/media/search.png" alt="Search" /></span>
                           <input class="span3" id="searchInput" disabled name="searchInput" size="20" type="text" />
                         </div>
-                        <span class="help-block">See tweet count for your repo.</span>
+                        <span class="help-block">See the tweet count for your repo.</span>
                       </div>
                     </div><!-- /clearfix -->
                     <div class="clearfix">
-                      <label for="stackedSelect">Time limit</label>
+                      <label for="timeSelect">Time limit</label>
                       <div class="input">
-                        <select name="stackedSelect" disabled id="stackedSelect">
-                          <option>All time</option>
-                          <option>7 days</option>
-                          <option>30 days</option>
-                          <option>365 days</option>
+                        <select name="timeSelect" id="timeSelect">
+                          <option value="10000">All time</option>
+                          <option value="7">A week</option>
+                          <option value="30">A month</option>
+                          <option value="365">A year</option>
                         </select>
                       </div>
                     </div><!-- /clearfix -->
                     
-                    <div class="clearfix">
+                    <!-- <div class="clearfix">
                       <label id="optionsRadio">Show type</label>
                       <div class="input">
                         <ul class="inputs-list">
@@ -106,7 +106,7 @@
                           </li>
                         </ul>
                       </div>
-                    </div><!-- /clearfix -->
+                    </div> /clearfix -->
                   </fieldset>
                 </form>
 

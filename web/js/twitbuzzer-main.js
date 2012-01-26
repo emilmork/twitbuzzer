@@ -92,12 +92,20 @@ socket.on('new_tweet', function (data) {
 
 
 var page  = 1,
-    history = 1000,
+    history = 10000,
     limit = 10,
     scrollingMargin = 150,
     isLoading = false;
 
 $(".alert-message").alert();
+
+$("#timeSelect").live("change", function () {
+  history = $(this).val();
+  page = 1;
+
+  $("#content-box ul").html("");
+  loadData("/github/" + history + "/" + limit + "/" + page);
+});
 
 $(function () {
   loadData("/github");
@@ -114,7 +122,7 @@ $(function () {
 });
 
 infiniteScroll(scrollingMargin, function () {
-  loadData("/github/" + history + "/" + limit + "/" + page)
+  loadData("/github/" + history + "/" + limit + "/" + page);
 });
 
 function loadData (url) {
