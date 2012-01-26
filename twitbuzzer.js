@@ -45,6 +45,15 @@ app.use("/media", express.static(__dirname + '/web/media'));
 
 // Serve API for fetching generated Github Repo objects
 app.get(/^\/github(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
+    getAPIData('listGithub', req, res);
+});
+
+// Serve API for fetching generated Spotify objects
+app.get(/^\/spotify(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
+    getAPIData('listSpotify', req, res);
+});
+
+function getAPIData (type, req, res) {
     res.contentType('application/json');
     var params = req.params;
     var daylimit = 1000,
@@ -60,12 +69,12 @@ app.get(/^\/github(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
         offset = parseInt(limit*(params[2]-1));
     }
 
-    mongodb.mapReduce("twitbuzzer", daylimit, limit, offset, function (err, data) {
+    mongodb[type]("twitbuzzer", daylimit, limit, offset, function (err, data) {
         if (err) console.log(err);
         
         res.send(JSON.stringify(data));
     });
-});
+}
 
 // Listen to twitter stream data.
 twit.stream('statuses/filter', {'track':'github,spotify'}, function(stream) {
@@ -84,7 +93,7 @@ function handleStream () {
         if(data.entities.urls.length < 1) return;
 
         var githubData  = getGithubID(data.entities.urls);
-        // var spotifyData = getSpotifyID(data.entities.urls);
+        var spotifyData = getSpotifyID(data.entities.urls);
 
         if (githubData.length > 0) {
             // console.log("---- githubData:");
@@ -93,12 +102,12 @@ function handleStream () {
             emitGithub(githubData);
         } 
         
-        // if (spotifyData.length > 0 ) {
-        // console.log("---- SpotifyData:");
-        // console.log(data.text);
-        // console.log(spotifyData);
-        // emitSpotify(spotifyData);
-        // }
+        if (spotifyData.length > 0 ) {
+            // console.log("---- SpotifyData:");
+            // console.log(data.text);
+            // console.log(spotifyData);
+            emitSpotify(spotifyData);
+        }
     }
 }
 
@@ -145,6 +154,8 @@ function emitSpotify(spotifyData) {
 
     spotifyData.forEach(function (elm) {
         obj.info = elm;
+
+        console.log("Spotify info:",obj);
         spotify.lookup({ type: elm[0], id: elm[1] }, emitData(obj));
     });
 }
