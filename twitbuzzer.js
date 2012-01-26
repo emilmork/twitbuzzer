@@ -49,7 +49,7 @@ app.get(/^\/github(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?$/, function (req, res) {
 });
 
 // Serve API for fetching generated Github Repo objects
-app.get(/^\/github\/([a-zA-Z0-9\_\-]+)(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?$/, function (req, res) {
+app.get(/^\/github\/([a-zA-Z0-9\_\-]{4,})(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?$/, function (req, res) {
     getAPIData('listGithubByKeyword', req, res, req.params[1], req.params[2], req.params[3], req.params[0]);
 });
 
