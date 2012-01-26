@@ -45,28 +45,42 @@ app.use("/media", express.static(__dirname + '/web/media'));
 
 // Serve API for fetching generated Github Repo objects
 app.get(/^\/github(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
-    getAPIData('listGithub', req, res);
+    getAPIData('listGithub', req, res, req.params[0], req.params[1], req.params[2]);
+});
+
+// Serve API for fetching generated Github Repo objects
+app.get(/^\/github\/([a-zA-Z0-9\_\-]+)(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
+    getAPIData('listGithubByKeyword', req, res, req.params[1], req.params[2], req.params[3], req.params[0]);
 });
 
 // Serve API for fetching generated Spotify objects
 app.get(/^\/spotify(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
-    getAPIData('listSpotify', req, res);
+    getAPIData('listSpotify', req, res, req.params[0], req.params[1], req.params[2]);
 });
 
-function getAPIData (type, req, res) {
+function getAPIData (type, req, res, daylimitIn, limitIn, offsetIn, keywordIn) {
     res.contentType('application/json');
-    var params = req.params;
     var daylimit = 1000,
         limit = 10,
         offset = 0;
     
-    if(typeof params[0] != "undefined") {
-        daylimit = parseInt(params[0]);
-        limit = parseInt(params[1]);
+    if(daylimitIn  > 0) {
+        daylimit = parseInt(daylimitIn);
+        limit = parseInt(limitIn);
     }
 
-    if(params[2] > 0) {
-        offset = parseInt(limit*(params[2]-1));
+    if(offsetIn > 0) {
+        offset = parseInt(limit*(offsetIn-1));
+    }
+
+    if(typeof keywordIn != "undefined" && keywordIn.length > 3) {
+        mongodb[type]("twitbuzzer", keywordIn, daylimit, limit, offset, function (err, data) {
+            if (err) console.log(err);
+            
+            res.send(JSON.stringify(data));
+        });
+
+        return;
     }
 
     mongodb[type]("twitbuzzer", daylimit, limit, offset, function (err, data) {
