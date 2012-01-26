@@ -122,6 +122,7 @@ $("#searchInput").live('keyup', function () {
   page = 1;
 
   timeoutSearch = setTimeout(function () {
+    console.log("inside timeout")
     $("#content-box ul").html("");
     constructUrlAndFetchData();
   }, 1000);
