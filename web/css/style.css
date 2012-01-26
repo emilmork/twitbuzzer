@@ -109,7 +109,10 @@ body {
 	text-align: center;
 	font-style: italic;
 }
+#content-box {
+	min-height: 500px;
 
+}
 #content-box ul.unstyled li {
 	background: #f8f8f8;
 }
