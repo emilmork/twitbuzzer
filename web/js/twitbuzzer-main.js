@@ -105,6 +105,7 @@ $(".alert-message").alert();
 $("#searchInput").live('keyup', function () {
 
   clearTimeout(timeoutSearch);
+
   var keywordIn = $(this).val();
   console.log("Inside");
   if( keywordIn.length < 4 ) {
@@ -123,7 +124,7 @@ $("#searchInput").live('keyup', function () {
   timeoutSearch = setTimeout(function () {
     $("#content-box ul").html("");
     constructUrlAndFetchData();
-  }, 600);
+  }, 1000);
   
 });
 
