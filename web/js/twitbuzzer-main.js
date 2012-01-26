@@ -102,7 +102,7 @@ var page  = 1,
 
 $(".alert-message").alert();
 
-$("#searchInput").keyup(function () {
+$("#searchInput").live('keyup', function () {
 
   clearTimeout(timeoutSearch);
   var keywordIn = $(this).val();
