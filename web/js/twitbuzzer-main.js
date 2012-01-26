@@ -101,7 +101,7 @@ var page  = 1,
 
 $(".alert-message").alert();
 
-$("#searchInput").live("keyUp", function () {
+$("#searchInput").keyup(function () {
   var keywordIn = $(this).val();
 
   if( keywordIn.length < 4 ) {
@@ -109,7 +109,7 @@ $("#searchInput").live("keyUp", function () {
     page = 1;
 
     constructUrlAndFetchData();
-    return false;
+    return;
   }
 
   keyword = keywordIn;
