@@ -97,13 +97,16 @@ var page  = 1,
     limit = 10,
     scrollingMargin = 150,
     isLoading = false,
-    keyword = "";
+    keyword = "",
+    timeoutSearch = "";
 
 $(".alert-message").alert();
 
 $("#searchInput").keyup(function () {
-  var keywordIn = $(this).val();
 
+  clearTimeout(timeoutSearch);
+  var keywordIn = $(this).val();
+  console.log("Inside");
   if( keywordIn.length < 4 ) {
     keyword = "";
     page = 1;
@@ -112,11 +115,16 @@ $("#searchInput").keyup(function () {
     return;
   }
 
+  console.log("keyword:", keywordIn);
+
   keyword = keywordIn;
   page = 1;
 
-  $("#content-box ul").html("");
-  constructUrlAndFetchData();
+  timeoutSearch = setTimeout(function () {
+    $("#content-box ul").html("");
+    constructUrlAndFetchData();
+  }, 600);
+  
 });
 
 
