@@ -108,7 +108,16 @@ $("#searchInput").live('keyup', function () {
 
   var keywordIn = $(this).val();
   console.log("Inside");
-  if( keywordIn.length < 4 ) {
+
+  if( keywordIn.length < 3 ) {
+    keyword = "";
+    page = 1;
+
+    return;
+  }
+
+
+  if( keywordIn.length == 3 ) {
     keyword = "";
     page = 1;
 
