@@ -44,12 +44,12 @@ app.use("/js", express.static(__dirname + '/web/js'));
 app.use("/media", express.static(__dirname + '/web/media'));
 
 // Serve API for fetching generated Github Repo objects
-app.get(/^\/github(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
+app.get(/^\/github(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?$/, function (req, res) {
     getAPIData('listGithub', req, res, req.params[0], req.params[1], req.params[2]);
 });
 
 // Serve API for fetching generated Github Repo objects
-app.get(/^\/github-search\/([a-zA-Z0-9\_\-]+)(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?/, function (req, res) {
+app.get(/^\/github\/([a-zA-Z0-9\_\-]+)(?:\/(\d+)(?:\/(\d+))(?:\/(\d+))?)?$/, function (req, res) {
     getAPIData('listGithubByKeyword', req, res, req.params[1], req.params[2], req.params[3], req.params[0]);
 });
 
