@@ -1,3 +1,6 @@
+// Woooo. Don't look. This is a prototype-alpha code.
+// Just too messy to be viewed by anyone. 
+
 var socket = io.connect(window.location.hostname);
 socket.on('new_tweet', function (data) {
   console.log(data);
@@ -67,8 +70,6 @@ socket.on('new_tweet', function (data) {
       }, 5000);
     });
 
-
-
   } else {
     var obj = {
       notice: "Newly tweeted repo: " + data.data.owner.login + "/" + data.data.name + "!"
@@ -95,35 +96,64 @@ var page  = 1,
     history = 10000,
     limit = 10,
     scrollingMargin = 150,
-    isLoading = false;
+    isLoading = false,
+    keyword = "";
 
 $(".alert-message").alert();
+
+$("#searchInput").live("keyUp", function () {
+  var keywordIn = $(this).val();
+
+  if( keywordIn.length < 4 ) {
+    keyword = "";
+    page = 1;
+
+    constructUrlAndFetchData();
+    return false;
+  }
+
+  keyword = keywordIn;
+  page = 1;
+
+  $("#content-box ul").html("");
+  constructUrlAndFetchData();
+});
+
+
 
 $("#timeSelect").live("change", function () {
   history = $(this).val();
   page = 1;
 
   $("#content-box ul").html("");
-  loadData("/github/" + history + "/" + limit + "/" + page);
+  constructUrlAndFetchData();
 });
 
 $(function () {
-  loadData("/github");
+  var $loadMore = $("<p />").attr("id", "load-more-content");
+  $("#content-box ul").after($loadMore);
+  $loadMore.hide();
+
+  constructUrlAndFetchData();
 
   $("[rel=twipsy]").twipsy({
     live: true
   });
-
-  
-
-  var $loadMore = $("<p />").attr("id", "load-more-content");
-  $("#content-box ul").after($loadMore);
-  $loadMore.hide();
 });
 
 infiniteScroll(scrollingMargin, function () {
   loadData("/github/" + history + "/" + limit + "/" + page);
 });
+
+function constructUrlAndFetchData () {
+  var url = "/github/" + history + "/" + limit + "/" + page;
+
+  if ( keyword.length >= 4 ) {
+    url = "/github/" + keyword + "/" + history + "/" + limit + "/" + page;
+  } 
+
+  loadData(url);
+}
 
 function loadData (url) {
   isLoading = true;
