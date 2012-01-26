@@ -112,7 +112,11 @@ $("#searchInput").live('keyup', function () {
     keyword = "";
     page = 1;
 
-    constructUrlAndFetchData();
+    timeoutSearch = setTimeout(function () {
+      console.log("inside timeout")
+      $("#content-box ul").html("");
+      constructUrlAndFetchData();
+    }, 1000);
     return;
   }
 
