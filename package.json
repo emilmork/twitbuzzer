@@ -1,10 +1,13 @@
 {
-  "name": "twitbuzzer",
-  "version": "0.0.1",
-  "dependencies": {
-    "express": "2.5.6",
-    "socket.io": "0.8.7",
-    "ntwitter": "0.2.9-2",
-    "mongoose": "*"
+    "name": "application-name"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": ">= 2.5.8",
+      "github-repo": ">= 0.0.1",
+      "jqtpl": ">= 1.0.9",
+      "mongojs": ">= 0.3.2",
+      "ntwitter": ">= 0.2.10",
+      "socket.io": ">= 0.9.1-1"
   }
 }
