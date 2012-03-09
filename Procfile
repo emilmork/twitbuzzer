@@ -1,1 +1,1 @@
-web: node twitbuzzer.js
+web: node app.js
