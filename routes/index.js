@@ -1,5 +1,5 @@
 
-var RepoProvider  = require('../lib/repo-provider').RepoProvider
+var RepoProvider  = require('../lib/repo-provider.mongoose').RepoProvider
   , repos = new RepoProvider();
 
 /*
