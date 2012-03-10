@@ -7,7 +7,7 @@ var RepoProvider  = require('../lib/repo-provider.mongoose').RepoProvider
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.partial('index', { title: 'Express' });
 };
 
 exports.list = function(req, res){
