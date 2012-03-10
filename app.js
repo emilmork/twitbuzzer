@@ -23,7 +23,8 @@ io.configure(function () {
   io.enable('browser client etag');          // apply etag caching logic based on version number
   io.enable('browser client gzip');          // gzip the file
   // io.set('log level', 1);                    // reduce logging
-    
+  app.use('/', express.errorHandler({ dump: true, stack: true }));
+
 });
 
 io.configure('development', function () { 
