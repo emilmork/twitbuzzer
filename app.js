@@ -7,7 +7,7 @@ var express       = require('express')
   , routes        = require('./routes')
   , githubrepo    = require('github-repo')
   , io            = require('socket.io').listen(app)
-  , ts            = require('./lib/repo-streamer').RepoStreamer
+  , ts            = require('./lib/repo-streamer.mongoose').RepoStreamer
   , RepoProvider  = require('./lib/repo-provider').RepoProvider;
 
 
