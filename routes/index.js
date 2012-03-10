@@ -7,7 +7,7 @@ var RepoProvider  = require('../lib/repo-provider.mongoose').RepoProvider
  */
 
 exports.index = function(req, res){
-  res.partial('index', { title: 'Express' });
+  res.render('index', { title: 'Express' });
 };
 
 exports.list = function(req, res){
@@ -17,7 +17,6 @@ exports.list = function(req, res){
   console.log("HERAAA????????");
 
   repos.findSelected(page, limit, function (err, obj) {
-    
     res.contentType('application/json');
 
     if (err || obj.length < 1) {
