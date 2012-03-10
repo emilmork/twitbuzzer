@@ -75,8 +75,12 @@ repoStream.on('tweeted_repo', function (data) {
   if (data.message) {
     return;
   }
+  console.log("Her");
   repos.save(data, function (err, obj) {
+    console.log(err);
     if (err) throw err;
+
+    console.log("Inni save");
 
     io.sockets.emit('tweeted_repo', obj);
   });
