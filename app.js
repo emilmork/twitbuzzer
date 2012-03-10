@@ -22,8 +22,7 @@ io.configure(function () {
   io.enable('browser client minification');  // send minified client
   io.enable('browser client etag');          // apply etag caching logic based on version number
   io.enable('browser client gzip');          // gzip the file
-  // io.set('log level', 1);                    // reduce logging
-  app.use('/', express.errorHandler({ dump: true, stack: true }));
+  io.set('log level', 1);                    // reduce logging
 
 });
 
@@ -59,7 +58,9 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
-  app.use(express.errorHandler());
+  // app.use(express.errorHandler());
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+
 });
 
 // Main Page
