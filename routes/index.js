@@ -14,7 +14,10 @@ exports.list = function(req, res){
   var page = req.params[0] || 0,
       limit = req.params[1] || 10;
 
+  console.log("HERAAA????????");
+
   repos.findSelected(page, limit, function (err, obj) {
+    
     res.contentType('application/json');
 
     if (err || obj.length < 1) {
