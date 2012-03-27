@@ -82,7 +82,10 @@
                 width: data._settings.width
             }).appendTo($this);
 
-            $this.data("tweet-graph", { elm: elm });
+            $this.data("tweet-graph", {
+                _settings: data._settings,
+                elm: elm
+            });
 
             methods._render.call(this);
         },
