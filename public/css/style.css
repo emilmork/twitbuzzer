@@ -28,8 +28,9 @@ section#listing {
 
   position: absolute;
   z-index: 3;
-  
-  right: 105%;
+
+  right: 100%;
+  margin-right: 10px;
 
   padding: 10px;
   margin-top: 10px;
