@@ -336,7 +336,7 @@ $.subscribe("repos.rendered", function (){
     $(".repo-graph").repoTweetGraph();
 });
 
-$.subscribe("repos.updatedRepo", function (repo){
+$.subscribe("repos.updatedRepo", function (e, repo){
     console.log(repo);
     // Show indication of increased count.
     var $elm = $("#listing").find('[data-repo-id="' + repo._id + '"]');
