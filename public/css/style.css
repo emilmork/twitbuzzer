@@ -35,6 +35,14 @@ section#listing {
 
   padding: 10px;
   margin-top: 10px;
+
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+}
+
+.repo-highlight:before {
+  background: green;
 }
 
 .container {

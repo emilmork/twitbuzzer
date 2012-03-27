@@ -343,13 +343,11 @@ $.subscribe("repos.updatedRepo", function (e, repo){
     console.log('[data-repo-id="' + repo._id() + '"]');
     console.log($elm);
 
-    $(":before", $elm).animate({
-        "background-color": "green"
-    }, 200, function () {
-        setTimeout(function () {
-            $(":before", $elm).animate({"background-color": ""}, 200);
-        }, 1000);
-    });
+    $elm.addClass("repo-highlight");
+    setTimeout(function () {
+        $elm.removeClass("repo-highlight");
+    }, 1000);
+
 
     // Re-render the graph.
     $elm.find(".repo-graph").repoTweetGraph('refresh');
