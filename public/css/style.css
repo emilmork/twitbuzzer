@@ -10,25 +10,27 @@ body {
   padding: 10px;
 }
 
-ol#listing { 
-  counter-reset: item;
-  list-style-type: none;
-}
 
-ol#listing > li:before {
-  list-style-position: outside;
-  content: counter(item) "# "; 
-  counter-increment: item;
-  color: #333;
-  font-size: 34px;
-  font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
-}​
 
 .container {
   max-width: 800px;
   margin: 0px auto;
 }
+
+
+section#listing { 
+  counter-reset: item;
+  list-style-type: none;
+}
+
+.repo-item:before {
+  color: #333;
+  font-size: 34px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  content: counter(item) "# "; 
+  counter-increment: item
+}​
 
 
 .repo-item {
