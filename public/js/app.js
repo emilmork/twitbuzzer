@@ -350,7 +350,7 @@ $.subscribe("repos.updatedRepo", function (repo){
     });
 
     // Re-render the graph.
-    $elm.repoTweetGraph('refresh');
+    $elm.find(".repo-graph").repoTweetGraph('refresh');
 });
 
 $.subscribe("repos.newRepo", function (repo){

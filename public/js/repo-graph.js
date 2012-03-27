@@ -133,7 +133,7 @@
 
 
     $.fn.repoTweetGraph.defaults = {
-        width: 320,
+        width: 300,
         height: 100
     };
 
