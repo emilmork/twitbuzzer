@@ -1,4 +1,6 @@
 (function (Raphael) {
+    "use strict";
+
     var tokenRegex = /\{([^\}]+)\}/g,
         objNotationRegex = /(?:(?:^|\.)(.+?)(?=\[|\.|$|\()|\[('|")(.+?)\2\])(\(\))?/g, // matches .xxxxx or ["xxxxx"] to run over object properties
         replacer = function (all, key, obj) {
@@ -22,6 +24,7 @@
         };
 
     Raphael.fn.popup = function (X, Y, set, pos, ret) {
+        console.log("created popup");
         pos = String(pos || "top-middle").split("-");
         pos[1] = pos[1] || "middle";
         var r = 5,

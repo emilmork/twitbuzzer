@@ -1,5 +1,7 @@
 
 var graph = (function (Raphael, $) {
+    "use strict";
+
     Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, color) {
         color = color || "#ddd";
         var path = ["M", Math.round(x), Math.round(y), "L", Math.round(x + w), Math.round(y), Math.round(x + w), Math.round(y + h), Math.round(x), Math.round(y + h) , Math.round(x), Math.round(y)],
@@ -42,8 +44,8 @@ var graph = (function (Raphael, $) {
         var leftgutter = 0,
             bottomgutter = 25,
             topgutter = 25,
-            colorhue = .6 || Math.random(),
-            color = "hsl(" + [colorhue, .5, .5] + ")",
+            colorhue = 0.6 || Math.random(),
+            color = "hsl(" + [colorhue, 0.5, 0.5] + ")",
             r = Raphael(elm, width, height),
             txt = {font: '12px Helvetica, Arial', fill: "#fff"},
             txt1 = {font: '10px Helvetica, Arial', fill: "#fff"},
@@ -52,10 +54,10 @@ var graph = (function (Raphael, $) {
             max = Math.max(Math.max.apply(Math, data), 1),
             Y = (height - bottomgutter - topgutter) / max;
 
-        r.drawGrid(leftgutter + X * .5 + .5, topgutter + .5, width - leftgutter - X, height - topgutter - bottomgutter, 14, 5, "#ccc");
+        r.drawGrid(leftgutter + X * 0.5 + 0.5, topgutter + 0.5, width - leftgutter - X, height - topgutter - bottomgutter, 14, 5, "#ccc");
 
         var path = r.path().attr({stroke: color, "stroke-width": 4, "stroke-linejoin": "round"}),
-            bgp = r.path().attr({stroke: "none", opacity: .3, fill: color}),
+            bgp = r.path().attr({stroke: "none", opacity: 0.3, fill: color}),
             label = r.set(),
             lx = 0, ly = 0,
             is_label_visible = false,
@@ -65,20 +67,20 @@ var graph = (function (Raphael, $) {
         label.push(r.text(60, 27, "22 September 2008").attr(txt1).attr(txt1));
         label.hide();
 
-        var frame = r.popup(100, 100, label, "right").attr({fill: "#000", stroke: "#666", "stroke-width": 2, "fill-opacity": .7}).hide();
+        var frame = r.popup(100, 100, label, "right").attr({fill: "#000", stroke: "#666", "stroke-width": 2, "fill-opacity": 0.7}).hide();
 
         var p, bgpp;
         for (var i = 0, ii = labels.length; i < ii; i++) {
             var y = Math.round(height - bottomgutter - Y * data[i]),
-                x = Math.round(leftgutter + X * (i + .5));
+                x = Math.round(leftgutter + X * (i + 0.5));
                 //t = r.text(x, height - 6, labels[i]).attr(txt).toBack();
             if (!i) {
                 p = ["M", x, y, "C", x, y];
-                bgpp = ["M", leftgutter + X * .5, height - bottomgutter, "L", x, y, "C", x, y];
+                bgpp = ["M", leftgutter + X * 0.5, height - bottomgutter, "L", x, y, "C", x, y];
             }
             if (i && i < ii - 1) {
                 var Y0 = Math.round(height - bottomgutter - Y * data[i - 1]),
-                    X0 = Math.round(leftgutter + X * (i - .5)),
+                    X0 = Math.round(leftgutter + X * (i - 0.5)),
                     Y2 = Math.round(height - bottomgutter - Y * data[i + 1]),
                     X2 = Math.round(leftgutter + X * (i + 1.5));
                 var a = getAnchors(X0, Y0, x, y, X2, Y2);
@@ -135,4 +137,5 @@ var graph = (function (Raphael, $) {
     };
 
     return graph;
-})(Raphael, jQuery);
+})(window.Raphael, jQuery);
+
