@@ -97,6 +97,7 @@
             var $this = $(this),
                 dates = $this.data("graph-dates");
 
+            console.log(dates);
             return createStats($.map(dates.split(","), function (val, i) {
                 return new Date(val);
             }));
