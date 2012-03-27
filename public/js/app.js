@@ -337,11 +337,8 @@ $.subscribe("repos.rendered", function (){
 });
 
 $.subscribe("repos.updatedRepo", function (e, repo){
-    console.log(repo);
     // Show indication of increased count.
     var $elm = $("#listing").find('[data-repo-id="' + repo._id() + '"]');
-    console.log('[data-repo-id="' + repo._id() + '"]');
-    console.log($elm);
 
     $elm.addClass("repo-highlight");
     setTimeout(function () {
@@ -350,7 +347,6 @@ $.subscribe("repos.updatedRepo", function (e, repo){
 
 
     // Re-render the graph.
-    console.log($elm.find(".repo-graph"));
     $elm.find(".repo-graph").repoTweetGraph('refresh');
 });
 

@@ -64,18 +64,8 @@
 
                 if (!data) {
                     var settings = $.extend({}, $.fn.repoTweetGraph.defaults, options);
-                    
-                    var elm = $('<div />', {
-                        height: settings.height,
-                        width: settings.width
-                    }).appendTo($this);
-
-                    $this.data("tweet-graph", {
-                        _settings: settings,
-                        elm: elm
-                    });
-
-                    methods._render.call(this);
+                    $this.data("tweet-graph", { _settings: settings });
+                    methods.refresh.call(this);
                 }
                 
                 return this;
@@ -86,7 +76,14 @@
             var $this = $(this),
                 data = $this.data("tweet-graph");
 
-            $(data.elm).html("");
+            $this.html("");
+            var elm = $('<div />', {
+                height: data._settings.height,
+                width: data._settings.width
+            }).appendTo($this);
+
+            $this.data("tweet-graph", { elm: elm });
+
             methods._render.call(this);
         },
 
@@ -105,6 +102,8 @@
                 data = $this.data("tweet-graph");
 
             var stats = methods._extractStats.call(this);
+
+            console.log("her");
 
             addGraphView(data.elm, stats.labels, stats.data, data._settings.width, data._settings.height);
         }
