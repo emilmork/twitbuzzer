@@ -2,14 +2,14 @@
 var graph = (function (Raphael, $) {
     Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, color) {
         color = color || "#ddd";
-        var path = ["M", Math.round(x) + .5, Math.round(y) + .5, "L", Math.round(x + w) + .5, Math.round(y) + .5, Math.round(x + w) + .5, Math.round(y + h) + .5, Math.round(x) + .5, Math.round(y + h) + .5, Math.round(x) + .5, Math.round(y) + .5],
+        var path = ["M", Math.round(x), Math.round(y), "L", Math.round(x + w), Math.round(y), Math.round(x + w), Math.round(y + h), Math.round(x), Math.round(y + h) , Math.round(x), Math.round(y)],
             rowHeight = h / hv,
             columnWidth = w / wv;
         for (var i = 1; i < hv; i++) {
-            path = path.concat(["M", Math.round(x) + .5, Math.round(y + i * rowHeight) + .5, "H", Math.round(x + w) + .5]);
+            path = path.concat(["M", Math.round(x), Math.round(y + i * rowHeight), "H", Math.round(x + w)]);
         }
         for (i = 1; i < wv; i++) {
-            path = path.concat(["M", Math.round(x + i * columnWidth) + .5, Math.round(y) + .5, "V", Math.round(y + h) + .5]);
+            path = path.concat(["M", Math.round(x + i * columnWidth), Math.round(y), "V", Math.round(y + h)]);
         }
         return this.path(path.join(",")).attr({stroke: color});
     };
