@@ -27,13 +27,14 @@ io.configure(function () {
 });
 
 io.configure('development', function () {
-  io.set('transports', [
-    'websocket',
-    'flashsocket',
-    'htmlfile',
-    'xhr-polling',
-    'jsonp-polling'
-  ]);
+  // io.set('transports', [
+  //   'websocket',
+  //   'flashsocket',
+  //   'htmlfile',
+  //   'xhr-polling',
+  //   'jsonp-polling'
+  // ]);
+  io.set("transports", ["xhr-polling"]);
 });
 
 io.configure('production', function () {
