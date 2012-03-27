@@ -345,8 +345,8 @@ $.subscribe("repos.updatedRepo", function (e, repo){
 
     $elm.addClass("repo-highlight");
     setTimeout(function () {
-        $elm.removeClass("repo-highlight");
-    }, 1000);
+        $elm.removeClass("repo-highlightg");
+    }, 3000);
 
 
     // Re-render the graph.
