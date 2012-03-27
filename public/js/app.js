@@ -63,6 +63,8 @@ var App = (function ($, ko, window, document, io, undefined) {
             self._ajaxSettings();
 
             self.viewModel.sortedRepos = ko.dependentObservable(function() {
+                console.log(this.repos);
+                console.log(this);
                 return this.repos.slice().sort(this.sortFunc);
             }, self.viewModel.repos);
 
