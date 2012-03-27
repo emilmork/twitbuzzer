@@ -43,7 +43,7 @@ section#listing {
 }
 
 .repo-item {
-  margin: 20px;
+  margin: 20px 0px;
   border-bottom: 4px dashed #ddd;
   padding: 10px;
   background: rgba(240, 240, 240, .5);
