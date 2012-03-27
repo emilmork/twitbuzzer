@@ -339,6 +339,7 @@ $.subscribe("repos.rendered", function (){
 $.subscribe("repos.updatedRepo", function (repo){
     // Show indication of increased count.
     var $elm = $("#listing").find('[data-repo-id="' + repo._id + '"]');
+    console.log($elm);
 
     $(":before", $elm).animate({
         "background-color": "green"

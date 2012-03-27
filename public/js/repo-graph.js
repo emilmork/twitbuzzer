@@ -86,7 +86,7 @@
             var $this = $(this),
                 data = $this.data("tweet-graph");
 
-            data.elm.empty();
+            $(data.elm).empty();
 
             var stats = methods._extractStats.call(this);
 
