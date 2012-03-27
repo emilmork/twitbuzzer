@@ -1,11 +1,11 @@
 {{layout "layout"}}
 
-<section data-bind="template: {name:'repo-item-template', foreach:sortedRepos}">
+<ol data-bind="template: {name:'repo-item-template', foreach:sortedRepos}">
   
-</section>
+</ol>
 
 <script id="repo-item-template" type="text/html">
-    <div class="row-fluid repo-item" data-bind='attr: {"data-repo-id": _id()}'>
+    <li class="row-fluid repo-item" data-bind='attr: {"data-repo-id": _id()}'>
       <div class="span7">
         <a data-bind='attr: {href: "https://github.com/" + info.user()}' class="user-avatar thumbnail">
           <img data-bind="attr: {src: repo_info.owner.avatar_url, alt: info.user}">
@@ -32,7 +32,7 @@
         <li>Created: <span data-bind="text: repo_info.created_at"></span></li>
         <li>Updated: <span data-bind="text: repo_info.updated_at"></span></li>
       </ul>
-    </div>
+    </li>
 </script>
 
 <span class="loading-indicator"><img src="/img/loader.gif" alt="Loading..."></span>

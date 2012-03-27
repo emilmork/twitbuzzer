@@ -1,5 +1,21 @@
-# Early, un-refactored twitbuzzer.
-This is more or less a prototype. Needs heavy refactoring and clean up. 
+# Twitbuzzer - Live stats for tweeted repositories
+
+A page for tracking live stats for all repositories from github tweeted on Twitter. 
+Uses socket.io and Twitters stream to live update repo stats.
+
+## Features
+
+1. Live updated (real time)
+2. Searching for repositories and users
+3. Stats in graph form (static for now)
+
+
+## Planned features
+1. Real time graph changes
+2. URL for searches. 
+3. More vast stats?
+4. Tweet button
+5. Top lists
 
 
 ## Configuration

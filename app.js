@@ -2,23 +2,23 @@
  * Module dependencies.
  */
 
-var express       = require('express')
-  , app           = module.exports = express.createServer()
-  , routes        = require('./routes')
-  , githubrepo    = require('github-repo')
-  , io            = require('socket.io').listen(app)
-  , ts            = require('./lib/repo-streamer').RepoStreamer
-  , RepoProvider  = require('./lib/repo-provider.mongoose').RepoProvider;
+var express       = require('express'),
+    app           = module.exports = express.createServer(),
+    routes        = require('./routes'),
+    githubrepo    = require('github-repo'),
+    io            = require('socket.io').listen(app),
+    ts            = require('./lib/repo-streamer').RepoStreamer,
+    RepoProvider  = require('./lib/repo-provider.mongoose').RepoProvider;
 
 
-var repoStream = new ts()
-  , repos = new RepoProvider();
+var repoStream = new ts(),
+    repos = new RepoProvider();
 
 // Configuration
 
-// Heroku Socket.IO support. 
+// Heroku Socket.IO support.
 // assuming io is the Socket.IO server object
-io.configure(function () { 
+io.configure(function () {
   io.enable('browser client minification');  // send minified client
   io.enable('browser client etag');          // apply etag caching logic based on version number
   io.enable('browser client gzip');          // gzip the file
@@ -26,20 +26,20 @@ io.configure(function () {
 
 });
 
-io.configure('development', function () { 
+io.configure('development', function () {
   io.set('transports', [
-    'websocket'
-  , 'flashsocket'
-  , 'htmlfile'
-  , 'xhr-polling'
-  , 'jsonp-polling'
+    'websocket',
+    'flashsocket',
+    'htmlfile',
+    'xhr-polling',
+    'jsonp-polling'
   ]);
 });
 
-io.configure('production', function () { 
+io.configure('production', function () {
   // reduce logging
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
 });
 
 
@@ -73,7 +73,7 @@ app.get(/^\/api\/list(?:\/(\d+))?(?:\/(\d+))?$/, routes.list);
 // Serve API for fetching searched Github Repo objects
 app.get(/^\/api\/search\/([a-zA-Z0-9\_\-]{3,})(?:\/(\d+))?(?:\/(\d+))?$/, routes.search);
 
-// When new tweeted repo is availeble, first save it and then send saved object to all clients. 
+// When new tweeted repo is availeble, first save it and then send saved object to all clients.
 repoStream.on('tweeted_repo', function (data) {
   if (data.message) {
     return;
@@ -87,7 +87,7 @@ repoStream.on('tweeted_repo', function (data) {
 
     io.sockets.emit('tweeted_repo', obj);
   });
-})
+});
 
 app.listen(process.env.PORT || 3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
