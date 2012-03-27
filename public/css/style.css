@@ -42,7 +42,11 @@ section#listing {
 }
 
 .repo-highlight:before {
-  background: green;
+  background: #26A032;
+
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
 }
 
 .container {
