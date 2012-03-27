@@ -116,7 +116,13 @@
         
 
     $.fn.repoTweetGraph = function (method) {
-        // Allow method calls (but not prefixed by _
+        // Check if elm has inited graph and trying to run method
+        if ( !this.data("tweet-graph") && typeof method === "string") {
+            $.error( 'Element not initiated as a jQuery.repoTweetGraph object' );
+            return this;
+        }
+        
+        // Allow method calls (but not prefixed by _)
         if ( typeof method === "string" && method.substr(0,1) !== "_" && methods[ method ] ) {
             return methods[method].apply(this, Array.prototype.slice.call( arguments, 1 ));
         }
