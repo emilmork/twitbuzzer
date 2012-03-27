@@ -349,7 +349,6 @@ $.subscribe("repos.updatedRepo", function (e, repo){
 
 
     // Re-render the graph.
-    console.log("In updatedRepo", $elm.find(".repo-graph").data("graph-dates"));
     $elm.find(".repo-graph").repoTweetGraph('refresh');
 });
 

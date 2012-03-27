@@ -14,8 +14,6 @@
             history = Date.today().addDays(-14), // Date.parse("4 weeks ago"),
             currentDate = history.clone();
 
-        console.log("Length:", len);
-
         for (i = 0; i < len; i += 1) {
             cur = dates[i];
 
@@ -95,9 +93,8 @@
 
         _extractStats: function () {
             var $this = $(this),
-                dates = $this.data("graph-dates");
+                dates = $this.attr("data-graph-dates");
 
-            console.log(dates);
             return createStats($.map(dates.split(","), function (val, i) {
                 return new Date(val);
             }));
@@ -110,7 +107,6 @@
 
             var stats = methods._extractStats.call(this);
 
-            console.log(stats.data);
 
             addGraphView(data.elm, stats.labels, stats.data, data._settings.width, data._settings.height);
         }
