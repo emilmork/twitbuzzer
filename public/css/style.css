@@ -25,10 +25,11 @@ section#listing {
   border-radius: 5px;
   background: #ddd;
   position: absolute;
-  z-index: 9;
-  left: -50px;
+  z-index: 3;
+  left: -55px;
   padding: 10px;
   padding-right: 20px;
+  margin-top: 10px;
 }
 
 .container {
