@@ -227,6 +227,7 @@ var App = (function ($, ko, window, document, io, undefined) {
             sortedRepos: ko.dependentObservable(function() {
                 return this.instances.slice().sort(this.sortFunc);
             }, this.repos),
+            
             currentPage: 0,
             loadNumber: 10,
             cache: [],
