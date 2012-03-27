@@ -1,6 +1,8 @@
 
 (function ($) {
 
+    "use strict";
+
     var addGraphView = function (elm, labels, data, width, height) {
         graph(elm[0], labels, data, width, height);
     };
@@ -8,10 +10,11 @@
     var createStats = function (dates) {
         var key = [], value = [],
             len = dates.length,
-            i, cur, k,
+            i, cur, k, j,
             history = Date.today().addDays(-14), // Date.parse("4 weeks ago"),
             currentDate = history.clone();
 
+        console.log("Length:", len);
 
         for (i = 0; i < len; i += 1) {
             cur = dates[i];
