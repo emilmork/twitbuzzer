@@ -65,6 +65,11 @@ var App = (function ($, ko, window, document, io, undefined) {
 
             ko.applyBindings(self.viewModel);
             self.viewModel.app = self;
+            
+            self.viewModel.sortedRepos = ko.dependentObservable(function() {
+                return this.instances.slice().sort(this.sortFunc);
+            }, self.viewModel.repos);
+
             self.get();
         },
 
@@ -224,10 +229,6 @@ var App = (function ($, ko, window, document, io, undefined) {
                 return left.tweet_count - right.tweet_count;
             },
 
-            sortedRepos: ko.dependentObservable(function() {
-                return this.instances.slice().sort(this.sortFunc);
-            }, this.repos),
-            
             currentPage: 0,
             loadNumber: 10,
             cache: [],
