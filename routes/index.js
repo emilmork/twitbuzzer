@@ -1,25 +1,23 @@
 
-var RepoProvider  = require('../lib/repo-provider.mongoose').RepoProvider
-  , repos = new RepoProvider();
+var RepoProvider  = require('../lib/repo-provider.mongoose').RepoProvider,
+    repos = new RepoProvider();
 
 /*
  * GET home page.
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'TwitBuzzer - Tweeted Repo Live Count' });
 };
 
 exports.list = function(req, res){
   var page = req.params[0] || 0,
       limit = req.params[1] || 10;
 
-  console.log("HERAAA????????");
-
   repos.findSelected(page, limit, function (err, obj) {
     res.contentType('application/json');
 
-    if (err || obj.length < 1) {
+    if (err || obj.length < 1) {
       // Not found. Show error
       res.send({error: true, message: "Not found"}, 204);
       return;
@@ -37,7 +35,7 @@ exports.search = function(req, res){
   repos.search(keyword, page, limit, function (err, obj) {
     res.contentType('application/json');
 
-    if (err || obj.length < 1) {
+    if (err || obj.length < 1) {
       // Not found. Show error
 
       res.send({error: true, message: "Not found"}, 204);
