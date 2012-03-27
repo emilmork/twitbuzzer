@@ -5,33 +5,35 @@
 </ol>
 
 <script id="repo-item-template" type="text/html">
-    <li class="row-fluid repo-item" data-bind='attr: {"data-repo-id": _id()}'>
-      <div class="span7">
-        <a data-bind='attr: {href: "https://github.com/" + info.user()}' class="user-avatar thumbnail">
-          <img data-bind="attr: {src: repo_info.owner.avatar_url, alt: info.user}">
-        </a>
-        <h2>
-          <a data-bind='attr: {href: "https://github.com/" + info.user()}, text: info.user'></a> / 
-          <a data-bind="attr: {href: 'https://github.com/' + info.user() + '/' + info.repo()}, text: info.repo"></a>
-        </h2>
-          
-        <p data-bind="text: repo_info.description"></p>
-      </div>
-      <div class="span5 repo-meta-info">
-          <div class="repo-meta-labels">
-            <span class="label label-info"><span data-bind="text: repo_info.watchers">0</span> Watchers</span>
-            <span class="label label-info"><span data-bind="text: repo_info.forks">0</span> Forks</span>
-            <span class="label label-success"><span data-bind="text: tweet_count">0</span> Tweets</span>
-          </div>
-          <div data-bind="attr: {'data-graph-dates': dates}" class="repo-graph">
+    <li>
+      <div class="row-fluid repo-item" data-bind='attr: {"data-repo-id": _id()}'>
+        <div class="span7">
+          <a data-bind='attr: {href: "https://github.com/" + info.user()}' class="user-avatar thumbnail">
+            <img data-bind="attr: {src: repo_info.owner.avatar_url, alt: info.user}">
+          </a>
+          <h2>
+            <a data-bind='attr: {href: "https://github.com/" + info.user()}, text: info.user'></a> / 
+            <a data-bind="attr: {href: 'https://github.com/' + info.user() + '/' + info.repo()}, text: info.repo"></a>
+          </h2>
+            
+          <p data-bind="text: repo_info.description"></p>
+        </div>
+        <div class="span5 repo-meta-info">
+            <div class="repo-meta-labels">
+              <span class="label label-info"><span data-bind="text: repo_info.watchers">0</span> Watchers</span>
+              <span class="label label-info"><span data-bind="text: repo_info.forks">0</span> Forks</span>
+              <span class="label label-success"><span data-bind="text: tweet_count">0</span> Tweets</span>
+            </div>
+            <div data-bind="attr: {'data-graph-dates': dates}" class="repo-graph">
 
-          </div>
+            </div>
+        </div>
+        <ul>
+          <li>Language: <span data-bind="text: repo_info.language"></span></li>
+          <li>Created: <span data-bind="text: repo_info.created_at"></span></li>
+          <li>Updated: <span data-bind="text: repo_info.updated_at"></span></li>
+        </ul>
       </div>
-      <ul>
-        <li>Language: <span data-bind="text: repo_info.language"></span></li>
-        <li>Created: <span data-bind="text: repo_info.created_at"></span></li>
-        <li>Updated: <span data-bind="text: repo_info.updated_at"></span></li>
-      </ul>
     </li>
 </script>
 
