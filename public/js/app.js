@@ -1,5 +1,4 @@
 
-// AJAX Settings
 
 /* jQuery Tiny Pub/Sub - v0.7 - 10/27/2011
  * http://benalman.com/
@@ -23,7 +22,7 @@
 
 }(jQuery));
 
-var App = (function ($, ko, window, document, undefined) {
+var App = (function ($, ko, window, document, undefined, io) {
     "use strict";
 
     var App = function () {
@@ -66,10 +65,12 @@ var App = (function ($, ko, window, document, undefined) {
 
             ko.applyBindings(self.viewModel);
             self.viewModel.app = self;
-            self.get();            
+            self.get();
         },
 
         _ajaxSettings: function () {
+            var self = this;
+
             $.ajaxSetup({
                 type: "GET",
                 dataType: "json",
@@ -79,11 +80,15 @@ var App = (function ($, ko, window, document, undefined) {
             // Using jQuery for Ajax loading indicator - nothing to do with Knockout
             $(".loading-indicator").hide().ajaxStart(function () {
                 self.isLoading = true;
-                $(this).fadeIn();
+                setTimeout(function () {
+                    $(this).fadeIn();
+                }, 0);
             }).ajaxComplete(function () {
-                $(this).fadeOut();
+                setTimeout(function () {
+                    $(this).fadeOut();
+                }, 0);
                 self.isLoading = false;
-            });            
+            });
         },
 
         _bindEvents: function () {
@@ -97,7 +102,7 @@ var App = (function ($, ko, window, document, undefined) {
                         $.publish("repos.updatedRepo", obj);
                     } else {
 
-                        // If a new repo and all repos are showing. 
+                        // If a new repo and all repos are showing.
                         // Add a entierly new repo to the list
                         // only if object matches search if in search
                         if ( self.isAtBottom && self.matchesInSearch(obj) ) {
@@ -113,9 +118,7 @@ var App = (function ($, ko, window, document, undefined) {
                 self.get();
             });
 
-
-
-            // Bind searching for keyword. 
+            // Bind searching for keyword.
             self.$searchBox.on("keyup", function (e) {
                 e.preventDefault();
                 self.search($(this));
@@ -157,7 +160,7 @@ var App = (function ($, ko, window, document, undefined) {
                 return;
             } else if ( len < 3 ) {
 
-                self.prevLen = len; 
+                self.prevLen = len;
                 return; // Do nothing
             }
 
@@ -172,7 +175,7 @@ var App = (function ($, ko, window, document, undefined) {
             this.timeoutSearch = setTimeout(function () {
                 self.reset();
                 self.get();
-                self.prevLen = len; 
+                self.prevLen = len;
             }, 500);
         },
 
@@ -256,10 +259,13 @@ var App = (function ($, ko, window, document, undefined) {
             },
 
             updateRepo: function (obj, cb) {
-                // Check if it exists 
+                // Check if it exists
                 var repos = this.repos(),
                     reposLen = repos.length,
-                    i, o;
+                    i, o,
+                    sortFunc = function(left, right) {
+                            return left.tweet_count - right.tweet_count;
+                        };
 
                 for (i = 0; i < reposLen; i += 1) {
                     o = repos[i];
@@ -269,9 +275,7 @@ var App = (function ($, ko, window, document, undefined) {
                         o.dates(obj.dates);
                         this.repos.valueHasMutated();
 
-                        this.repos.sort(function(left, right) { 
-                            return left.tweet_count - right.tweet_count;
-                        });
+                        this.repos.sort( sortFunc );
 
                         cb.apply(o, [true, ko.utils.unwrapObservable(o)]);
                         return;
@@ -285,25 +289,25 @@ var App = (function ($, ko, window, document, undefined) {
                 var self = this;
 
                 return $.ajax({
-                    url: url,
+                    url: url
                 }).done(function (data, status, xhr) {
 
                     if (xhr.status === 204) {
-                        // No more content. 
+                        // No more content.
                         app.isAtBottom = true;
                         return;
-                    } 
+                    }
 
                     self.cache = $.merge(ko.utils.unwrapObservable(self.repos), data);
 
                     // Extend model
                     ko.mapping.fromJS({"repos": self.cache}, self.mapping, self);
 
-                    self.repos.sort(function(left, right) { 
+                    self.repos.sort(function(left, right) {
                         return left.tweet_count - right.tweet_count;
                     });
 
-                })
+                });
             }
         }
 
@@ -311,23 +315,23 @@ var App = (function ($, ko, window, document, undefined) {
 
     return App;
 
-})(jQuery, ko, window, document);
+})(jQuery, ko, window, document, io);
 
 var app = new App($("#q"));
 
 // events for doing extra special stuff.
 
-$.subscribe("repos.rendered", function () {
+$.subscribe("repos.rendered", function (){
     // Render all graphs
     $(".repo-graph").repoTweetGraph();
 });
 
-$.subscribe("repos.updatedRepo", function (repo) {
-    // Show indication of increased count. 
+$.subscribe("repos.updatedRepo", function (repo){
+    // Show indication of increased count.
 
-    // Re-render the graph. 
+    // Re-render the graph.
 });
 
-$.subscribe("repos.newRepo", function (repo) {
+$.subscribe("repos.newRepo", function (repo){
     // Do notification
 });
