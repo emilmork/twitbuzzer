@@ -79,13 +79,15 @@ var App = (function ($, ko, window, document, io, undefined) {
 
             // Using jQuery for Ajax loading indicator - nothing to do with Knockout
             $(".loading-indicator").hide().ajaxStart(function () {
+                var $this = $(this);
                 self.isLoading = true;
                 setTimeout(function () {
-                    $(this).fadeIn();
+                    $this.fadeIn();
                 }, 0);
             }).ajaxComplete(function () {
+                var $this = $(this);
                 setTimeout(function () {
-                    $(this).fadeOut();
+                    $this.fadeOut();
                 }, 0);
                 self.isLoading = false;
             });
