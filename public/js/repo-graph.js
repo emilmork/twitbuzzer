@@ -82,6 +82,17 @@
             });
         },
 
+        refresh: function () {
+            var $this = $(this),
+                data = $this.data("tweet-graph");
+
+            data.elm.empty();
+
+            var stats = methods._extractStats.call(this);
+
+            addGraphView(data.elm, stats.labels, stats.data, data._settings.width, data._settings.height);
+        },
+
         _extractStats: function () {
             var $this = $(this),
                 dates = $this.data("graph-dates");
@@ -124,6 +135,6 @@
     $.fn.repoTweetGraph.defaults = {
         width: 320,
         height: 100
-    }
+    };
 
 })(jQuery);

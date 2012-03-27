@@ -166,8 +166,9 @@ var App = (function ($, ko, window, document, io, undefined) {
                 this.get();
                 self.prevLen = len;
                 return;
-            } else if ( len < 3 ) {
+            }
 
+            if ( len < 3 ) {
                 self.prevLen = len;
                 return; // Do nothing
             }
@@ -337,8 +338,18 @@ $.subscribe("repos.rendered", function (){
 
 $.subscribe("repos.updatedRepo", function (repo){
     // Show indication of increased count.
+    var $elm = $("#listing").find('[data-repo-id="' + repo._id + '"]');
+
+    $(":before", $elm).animate({
+        "background-color": "green"
+    }, 200, function () {
+        setTimeout(function () {
+            $(":before", $elm).animate({"background-color": ""}, 200);
+        }, 1000);
+    });
 
     // Re-render the graph.
+    $elm.repoTweetGraph('refresh');
 });
 
 $.subscribe("repos.newRepo", function (repo){
