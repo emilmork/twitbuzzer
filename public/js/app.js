@@ -345,11 +345,12 @@ $.subscribe("repos.updatedRepo", function (e, repo){
 
     $elm.addClass("repo-highlight");
     setTimeout(function () {
-        $elm.removeClass("repo-highlightg");
+        $elm.removeClass("repo-highlight");
     }, 3000);
 
 
     // Re-render the graph.
+    console.log($elm.find(".repo-graph"));
     $elm.find(".repo-graph").repoTweetGraph('refresh');
 });
 
