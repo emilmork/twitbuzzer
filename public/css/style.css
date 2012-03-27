@@ -10,14 +10,6 @@ body {
   padding: 10px;
 }
 
-
-
-.container {
-  max-width: 800px;
-  margin: 0px auto;
-}
-
-
 section#listing { 
   counter-reset: item;
   list-style-type: none;
@@ -29,7 +21,12 @@ section#listing {
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   content: counter(item) "# ";
-  counter-increment: item
+  counter-increment: item;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0px auto;
 }
 
 .repo-item {
