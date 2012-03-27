@@ -13,6 +13,7 @@ body {
 section#listing { 
   counter-reset: item;
   list-style-type: none;
+  margin-right: 10px;
 }
 
 .repo-item:before {
