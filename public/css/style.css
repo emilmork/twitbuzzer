@@ -14,7 +14,7 @@ ol#listing {
   counter-reset: item 
 }
 
-ol#listing li:before { 
+ol#listing > li:before { 
   content: counter(item) "# "; 
   counter-increment: item;
   color: #333;
