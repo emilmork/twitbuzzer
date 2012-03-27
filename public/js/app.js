@@ -62,7 +62,7 @@ var App = (function ($, ko, window, document, io, undefined) {
             // Fix loading indicator etc.
             self._ajaxSettings();
 
-            self.sortedRepos = ko.computed({
+            self.viewModel.sortedRepos = ko.computed({
                 read: function() {
                     return this.repos.slice().sort(this.sortFunc);
                 },
