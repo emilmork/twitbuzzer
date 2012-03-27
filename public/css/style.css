@@ -23,7 +23,9 @@ section#listing {
   content: counter(item) "# ";
   counter-increment: item;
   border-radius: 5px;
-  background: #ddd;
+
+  text-align: right;
+
   position: absolute;
   z-index: 3;
   left: -65px;
