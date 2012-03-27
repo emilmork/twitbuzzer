@@ -62,7 +62,15 @@ var App = (function ($, ko, window, document, io, undefined) {
             // Fix loading indicator etc.
             self._ajaxSettings();
 
+            self.sortedRepos = ko.computed({
+                read: function() {
+                    return this.repos.slice().sort(this.sortFunc);
+                },
+                owner: self.viewModel
+            });
+
             ko.applyBindings(self.viewModel);
+
             self.viewModel.app = self;
 
             self.get();
@@ -224,14 +232,6 @@ var App = (function ($, ko, window, document, io, undefined) {
             sortFunc: function(left, right) {
                 return right.tweet_count() - left.tweet_count();
             },
-
-            sortedRepos: ko.computed({
-                read: function() {
-                    console.log(this);
-                    return this.repos.slice().sort(this.sortFunc);
-                },
-                owner: this
-            }),
 
             currentPage: 0,
             loadNumber: 10,
