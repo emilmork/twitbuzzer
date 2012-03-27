@@ -227,8 +227,7 @@ var App = (function ($, ko, window, document, io, undefined) {
             }),
 
             sortFunc: function(left, right) {
-                console.log(left.tweet_count(), right.tweet_count());
-                return left.tweet_count() - right.tweet_count();
+                return right.tweet_count() - left.tweet_count();
             },
 
             currentPage: 0,
