@@ -49,7 +49,7 @@ var graph = (function (Raphael, $) {
             txt1 = {font: '10px Helvetica, Arial', fill: "#fff"},
             txt2 = {font: '12px Helvetica, Arial', fill: "#000"},
             X = (width - leftgutter) / labels.length,
-            max = Math.min(Math.max.apply(Math, data), 1),
+            max = Math.max(Math.max.apply(Math, data), 1),
             Y = (height - bottomgutter - topgutter) / max;
 
         r.drawGrid(leftgutter + X * .5 + .5, topgutter + .5, width - leftgutter - X, height - topgutter - bottomgutter, 14, 5, "#ccc");
