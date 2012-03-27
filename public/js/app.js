@@ -219,6 +219,14 @@ var App = (function ($, ko, window, document, io, undefined) {
                     }
                 }
             }),
+
+            sortFunc: function(left, right) {
+                return left.tweet_count - right.tweet_count;
+            },
+
+            sortedRepos: ko.dependentObservable(function() {
+                return this.instances.slice().sort(this.sortFunc);
+            }, this.repos),
             currentPage: 0,
             loadNumber: 10,
             cache: [],
@@ -239,8 +247,6 @@ var App = (function ($, ko, window, document, io, undefined) {
                 ko.mapping.fromJS({"repos": self.cache}, self.mapping, self);
                 $.publish("repos.rendered");
             },
-
-
 
             append: function () {
                 var url = "/api/list/" + this.currentPage + "/" + this.loadNumber;
@@ -264,10 +270,8 @@ var App = (function ($, ko, window, document, io, undefined) {
                 // Check if it exists
                 var repos = this.repos(),
                     reposLen = repos.length,
-                    i, o,
-                    sortFunc = function(left, right) {
-                            return left.tweet_count - right.tweet_count;
-                        };
+                    i, o;
+                    
 
                 for (i = 0; i < reposLen; i += 1) {
                     o = repos[i];
@@ -277,7 +281,7 @@ var App = (function ($, ko, window, document, io, undefined) {
                         o.dates(obj.dates);
                         this.repos.valueHasMutated();
 
-                        this.repos.sort( sortFunc );
+                        // this.repos.sort( sortFunc );
 
                         cb.apply(o, [true, ko.utils.unwrapObservable(o)]);
                         return;
@@ -305,9 +309,9 @@ var App = (function ($, ko, window, document, io, undefined) {
                     // Extend model
                     ko.mapping.fromJS({"repos": self.cache}, self.mapping, self);
 
-                    self.repos.sort(function(left, right) {
-                        return left.tweet_count - right.tweet_count;
-                    });
+                    // self.repos.sort(function(left, right) {
+                    //     return left.tweet_count - right.tweet_count;
+                    // });
 
                 });
             }
