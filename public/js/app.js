@@ -62,13 +62,14 @@ var App = (function ($, ko, window, document, io, undefined) {
             // Fix loading indicator etc.
             self._ajaxSettings();
 
-
-            ko.applyBindings(self.viewModel);
-            self.viewModel.app = self;
-            
             self.viewModel.sortedRepos = ko.dependentObservable(function() {
                 return this.instances.slice().sort(this.sortFunc);
             }, self.viewModel.repos);
+            
+            ko.applyBindings(self.viewModel);
+            self.viewModel.app = self;
+
+            
 
             self.get();
         },
