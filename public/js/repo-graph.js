@@ -87,10 +87,7 @@
                 data = $this.data("tweet-graph");
 
             $(data.elm).html("");
-
-            var stats = methods._extractStats.call(this);
-
-            addGraphView(data.elm, stats.labels, stats.data, data._settings.width, data._settings.height);
+            methods._render.call(this);
         },
 
         _extractStats: function () {
