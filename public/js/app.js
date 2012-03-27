@@ -227,6 +227,7 @@ var App = (function ($, ko, window, document, io, undefined) {
 
             sortedRepos: ko.computed({
                 read: function() {
+                    console.log(this);
                     return this.repos.slice().sort(this.sortFunc);
                 },
                 owner: this
