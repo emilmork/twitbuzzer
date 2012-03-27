@@ -26,9 +26,8 @@ section#listing {
   background: #ddd;
   position: absolute;
   z-index: 3;
-  left: -55px;
+  left: -65px;
   padding: 10px;
-  padding-right: 20px;
   margin-top: 10px;
 }
 
@@ -43,6 +42,10 @@ section#listing {
   border-bottom: 4px dashed #ddd;
   padding: 10px;
   background: rgba(240, 240, 240, .5);
+
+  position: relative;
+  z-index: 50;
+
   /*-moz-box-shadow: 0 0 10px #888;
   -webkit-box-shadow: 0 0 10px #888;
   box-shadow: 0 0 10px #888;*/
@@ -51,8 +54,7 @@ section#listing {
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
 
-  position: relative;
-  z-index: 10;
+  
 
 }
 
