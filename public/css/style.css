@@ -22,6 +22,11 @@ section#listing {
   font-family: Arial, Helvetica, sans-serif;
   content: counter(item) "# ";
   counter-increment: item;
+  border-radius: 5px;
+  background: #ddd;
+  position: absolute;
+  z-index: 9;
+  left: -50px;
 }
 
 .container {
@@ -43,7 +48,8 @@ section#listing {
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
 
-  top: -300px;
+  position: relative;
+  z-index: 10;
 
 }
 
