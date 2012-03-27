@@ -106,7 +106,7 @@
 
             var stats = methods._extractStats.call(this);
 
-            console.log("her");
+            console.log(stats.data);
 
             addGraphView(data.elm, stats.labels, stats.data, data._settings.width, data._settings.height);
         }
