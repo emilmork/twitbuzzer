@@ -10,6 +10,19 @@ body {
   padding: 10px;
 }
 
+ol#listing { 
+  counter-reset: item 
+}
+
+ol#listing li:before { 
+  content: counter(item) "# "; 
+  counter-increment: item;
+  color: #333;
+  font-size: 34px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}​
+
 .container {
   max-width: 800px;
   margin: 0px auto;
