@@ -119,6 +119,6 @@
             set.translate(dx, dy);
             return out;
     };
-})(Raphael);
+})(window.Raphael);
 
 
