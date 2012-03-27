@@ -22,7 +22,7 @@
 
 }(jQuery));
 
-var App = (function ($, ko, window, document, undefined, io) {
+var App = (function ($, ko, window, document, io, undefined) {
     "use strict";
 
     var App = function () {
