@@ -66,7 +66,7 @@ var App = (function ($, ko, window, document, io, undefined) {
                 console.log(this.repos);
                 console.log(this);
                 return this.repos.slice().sort(this.sortFunc);
-            }, self.viewModel.repos);
+            }, self.viewModel);
 
             ko.applyBindings(self.viewModel);
             self.viewModel.app = self;
