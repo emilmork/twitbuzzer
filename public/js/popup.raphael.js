@@ -1,4 +1,4 @@
-(function () {
+(function (Raphael) {
 var tokenRegex = /\{([^\}]+)\}/g,
     objNotationRegex = /(?:(?:^|\.)(.+?)(?=\[|\.|$|\()|\[('|")(.+?)\2\])(\(\))?/g, // matches .xxxxx or ["xxxxx"] to run over object properties
     replacer = function (all, key, obj) {
@@ -12,7 +12,7 @@ var tokenRegex = /\{([^\}]+)\}/g,
                 typeof res == "function" && isFunc && (res = res());
             }
         });
-        res = (res == null || res == obj ? all : res) + "";
+        res = (res === null || res == obj ? all : res) + "";
         return res;
     },
     fill = function (str, obj) {
@@ -118,4 +118,4 @@ var tokenRegex = /\{([^\}]+)\}/g,
             set.translate(dx, dy);
             return out;
     };
-})();
+})(Raphael);
