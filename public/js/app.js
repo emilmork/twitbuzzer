@@ -62,14 +62,8 @@ var App = (function ($, ko, window, document, io, undefined) {
             // Fix loading indicator etc.
             self._ajaxSettings();
 
-            self.viewModel.sortedRepos = ko.dependentObservable(function() {
-                return this.repos.slice().sort(this.sortFunc);
-            }, self.viewModel);
-
             ko.applyBindings(self.viewModel);
             self.viewModel.app = self;
-
-            
 
             self.get();
         },
@@ -231,6 +225,13 @@ var App = (function ($, ko, window, document, io, undefined) {
                 return right.tweet_count() - left.tweet_count();
             },
 
+            sortedRepos: ko.computed({
+                read: function() {
+                    return this.repos.slice().sort(this.sortFunc);
+                },
+                owner: this
+            }),
+
             currentPage: 0,
             loadNumber: 10,
             cache: [],
@@ -347,6 +348,7 @@ $.subscribe("repos.updatedRepo", function (e, repo){
 
 
     // Re-render the graph.
+    console.log("In updatedRepo", $elm.find(".repo-graph").data("graph-dates"));
     $elm.find(".repo-graph").repoTweetGraph('refresh');
 });
 

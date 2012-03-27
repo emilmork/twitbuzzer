@@ -1,5 +1,5 @@
 
-(function ($) {
+(function ($, graph, console) {
 
     "use strict";
 
@@ -146,4 +146,4 @@
         height: 100
     };
 
-})(jQuery);
+})(jQuery, graph, console);
