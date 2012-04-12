@@ -8,13 +8,14 @@ Uses socket.io and Twitters stream to live update repo stats.
 1. Live updated (real time)
 2. Searching for repositories and users
 3. Stats in graph form
+4. Filtering by time (Today, Week, Month, Forever)
 
 
 ## Planned features
 1. ~~Real time graph changes~~
 2. URL for searches. 
 3. More vast stats?
-4. Tweet button
+4. Tweet button.
 5. Language as categories?
 6. Growl esc notification 
 
