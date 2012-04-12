@@ -6,7 +6,6 @@
       "express": ">= 2.5.8",
       "github-repo": ">= 0.0.3",
       "jqtpl": ">= 1.0.9",
-      //"mongojs": ">= 0.3.2",
       "ntwitter": ">= 0.2.10",
       "socket.io": ">= 0.9.1-1",
       "mongoose": "*",
