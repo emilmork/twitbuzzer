@@ -10,9 +10,15 @@ exports.index = function(req, res){
   res.render('index', { title: 'TwitBuzzer - Tweeted Repo Live Count' });
 };
 
+
+// /^\/api\/list(?:\/(\d+))?(?:\/(\d+))?$/
+// /^\/api\/list\/?(?:page:\/(\d+))?(?:limit:\/(\d+))?$/
 exports.list = function(req, res){
-  var page = req.params[0] || 0,
-      limit = req.params[1] || 10;
+  var page = req.param("page") || 0,
+      limit = req.param("limit") || 10,
+      dayLimit = req.param("days") || 0;
+
+  repos.dayFilter = dayLimit;
 
   repos.findSelected(page, limit, function (err, obj) {
     res.contentType('application/json');
@@ -28,16 +34,24 @@ exports.list = function(req, res){
 };
 
 exports.search = function(req, res){
-  var page = req.params[1] || 0,
-      limit = req.params[2] || 10,
-      keyword = req.params[0];
+
+  res.contentType('application/json');
+
+  var page = req.param("page") || 0,
+      limit = req.param("limit") || 10,
+      keyword = req.param("keyword"),
+      dayLimit = req.param("days") || 0;
+
+  if ( !keyword ) {
+    res.send({error: true, message: "Not found"}, 204);
+  }
+
+  repos.dayFilter = dayLimit;
 
   repos.search(keyword, page, limit, function (err, obj) {
-    res.contentType('application/json');
-
+    
     if (err || obj.length < 1) {
       // Not found. Show error
-
       res.send({error: true, message: "Not found"}, 204);
       return;
     }

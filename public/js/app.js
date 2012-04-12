@@ -46,6 +46,8 @@ var App = (function ($, ko, window, document, io, undefined) {
         scrollingMargin: 10,
         isAtBottom: false,
 
+        dayFilter: 7,
+
         init: function (searchElm) {
             var self = this;
 
@@ -140,6 +142,20 @@ var App = (function ($, ko, window, document, io, undefined) {
                 e.preventDefault();
                 return false;
             });
+
+            $(".day-filter").on("click", "a", function () {
+                var $this = $(this),
+                    $parent = $this.parents("li"),
+                    dayFilter = parseInt($this.attr("data-day-filter"), 10) || 0;
+
+                $parent.addClass("active").siblings().removeClass("active");
+                self.dayFilter = dayFilter;
+                
+                self.reset();
+                self.get();
+
+                return false;
+            });
         },
 
         matchesInSearch: function (obj) {
@@ -187,7 +203,7 @@ var App = (function ($, ko, window, document, io, undefined) {
                 self.reset();
                 self.get();
                 self.prevLen = len;
-            }, 500);
+            }, 300);
         },
 
         _infiniteScroll: function () {
@@ -255,19 +271,34 @@ var App = (function ($, ko, window, document, io, undefined) {
             },
 
             append: function () {
-                var url = "/api/list/" + this.currentPage + "/" + this.loadNumber;
+                var url = "/api/list/",
+                    data = {
+                        page: this.currentPage,
+                        limit: this.loadNumber,
+                        days: this.app.dayFilter
+                    };
+
                 this.currentPage += 1; // increase page number.
 
-                this._fetch(url).done(function () {
+                this._fetch(url, data).done(function () {
                     $.publish("repos.rendered");
                 });
             },
 
             search: function (keyword) {
-                var url = "/api/search/" + keyword + "/" + this.currentPage + "/" + this.loadNumber;
+                var url = "/api/search/",
+                    data = {
+                        page: this.currentPage,
+                        limit: this.loadNumber,
+                        keyword: keyword,
+                        days: this.app.dayFilter
+                    };
+
+
+
                 this.currentPage += 1; // increase page number.
 
-                this._fetch(url).done(function () {
+                this._fetch(url, data).done(function () {
                     $.publish("repos.rendered");
                 });
             },
@@ -297,11 +328,12 @@ var App = (function ($, ko, window, document, io, undefined) {
                 cb.apply(obj, [false, obj]);
             },
 
-            _fetch: function (url) {
+            _fetch: function (url, data) {
                 var self = this;
 
                 return $.ajax({
-                    url: url
+                    url: url,
+                    data: data
                 }).done(function (data, status, xhr) {
 
                     if (xhr.status === 204) {
@@ -335,7 +367,7 @@ var app = new App($("#q"));
 
 $.subscribe("repos.rendered", function (){
     // Render all graphs
-    $(".repo-graph").repoTweetGraph();
+    $(".repo-graph").repoTweetGraph({time: app.dayFilter});
 });
 
 $.subscribe("repos.updatedRepo", function (e, repo){
@@ -348,8 +380,8 @@ $.subscribe("repos.updatedRepo", function (e, repo){
         $elm.removeClass("repo-highlight");
     }, 3000);
 
-    // Re-render the graph.
-    $elm.find(".repo-graph").repoTweetGraph('refresh');
+    // Re-render the graph, and update dayFilter (amount of nodes to show)
+    $elm.find(".repo-graph").repoTweetGraph('refresh', app.dayFilter);
 });
 
 $.subscribe("repos.newRepo", function (repo){

@@ -7,11 +7,11 @@
         graph(elm[0], labels, data, width, height);
     };
 
-    var createStats = function (dates) {
+    var createStats = function (time, dates) {
         var key = [], value = [],
             len = dates.length,
             i, cur, k, j,
-            history = Date.today().addDays(-14), // Date.parse("4 weeks ago"),
+            history = Date.today().addDays(-time), // Date.parse("4 weeks ago"),
             currentDate = history.clone();
 
         for (i = 0; i < len; i += 1) {
@@ -65,6 +65,14 @@
 
                 if (!data) {
                     var settings = $.extend({}, $.fn.repoTweetGraph.defaults, options);
+
+                    if ( settings.time === 0 ) {
+                        settings.time = 30;
+                    }
+                    else if ( settings.time < 4 ) {
+                        settings.time = 7;
+                    }
+
                     $this.data("tweet-graph", { _settings: settings });
                     methods.refresh.call(this);
                 }
@@ -73,9 +81,23 @@
             });
         },
 
-        refresh: function () {
+        refresh: function (numNodes) {
             var $this = $(this),
                 data = $this.data("tweet-graph");
+
+            // Set new amount of nodes in stats viewed.
+            if ( numNodes ) {
+
+                if ( numNodes === 0 ) {
+                    data._settings.time = 30;
+                }
+                else if ( numNodes < 4 ) {
+                    data._settings.time = 7;
+                }
+                else {
+                    data._settings.time = numNodes;
+                }
+            }
 
             $this.html("");
             var elm = $('<div />', {
@@ -95,7 +117,7 @@
             var $this = $(this),
                 dates = $this.attr("data-graph-dates");
 
-            return createStats($.map(dates.split(","), function (val, i) {
+            return createStats($this.data("tweet-graph")._settings.time, $.map(dates.split(","), function (val, i) {
                 return new Date(val);
             }));
 
@@ -139,7 +161,8 @@
 
     $.fn.repoTweetGraph.defaults = {
         width: 300,
-        height: 100
+        height: 100,
+        time: 30
     };
 
 })(jQuery, graph, console);

@@ -15,6 +15,8 @@ var repoStream = new ts(),
     repos = new RepoProvider();
 
 // Configuration
+process.env.TZ = 'GMT';
+
 
 // Heroku Socket.IO support.
 // assuming io is the Socket.IO server object
@@ -69,10 +71,12 @@ app.configure('production', function(){
 app.get('/', routes.index);
 
 // Serve API for fetching generated Github Repo objects
-app.get(/^\/api\/list(?:\/(\d+))?(?:\/(\d+))?$/, routes.list);
+// app.get(/^\/api\/list\/?(?:page:(\d+)\/?)?(?:limit:(\d+)\/?)?$/, routes.list);
+app.get("/api/list/?", routes.list);
 
 // Serve API for fetching searched Github Repo objects
-app.get(/^\/api\/search\/([a-zA-Z0-9\_\-]{3,})(?:\/(\d+))?(?:\/(\d+))?$/, routes.search);
+// app.get(/^\/api\/search\/([a-zA-Z0-9\_\-]{3,})(?:\/(\d+))?(?:\/(\d+))?$/, routes.search);
+app.get("/api/search/?", routes.search);
 
 // When new tweeted repo is availeble, first save it and then send saved object to all clients.
 repoStream.on('tweeted_repo', function (data) {
