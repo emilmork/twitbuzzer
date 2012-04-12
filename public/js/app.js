@@ -22,6 +22,10 @@
 
 }(jQuery));
 
+
+/* Application JS for Twitbuzzer - v0.2 - 12.04.2012
+ * http://github.com/mikaelbr/twitbuzzer
+ */
 var App = (function ($, ko, window, document, io, undefined) {
     "use strict";
 
